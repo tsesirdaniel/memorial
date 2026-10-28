@@ -9,379 +9,374 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --paper: #f6f1e8;
-      --paper-deep: #ebe3d6;
-      --ink: #1f1c18;
-      --ink-soft: #4a453e;
-      --muted: #7a7268;
-      --line: #d9d0c2;
+      --paper: #f7f2ea;
+      --paper-deep: #ebe4d7;
+      --ink: #1c1915;
+      --ink-soft: #4a443c;
+      --muted: #7d756b;
+      --line: #ddd4c6;
       --accent: #8b3a2d;
-      --accent-soft: #c9a089;
-      --card: rgba(255, 252, 247, 0.92);
-      --shadow: 0 18px 48px rgba(31, 28, 24, 0.08);
-      --serif: "Noto Serif TC", "Source Han Serif TC", "Songti TC", "PingFang TC", "Hiragino Mincho ProN", serif;
+      --accent-soft: #c4a090;
+      --card: rgba(255, 252, 247, 0.94);
+      --shadow: 0 16px 40px rgba(31, 28, 24, 0.07);
+      --serif: "Noto Serif TC", "Source Han Serif TC", "Songti TC", "PingFang TC", serif;
       --sans: "Noto Sans TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif;
+      --radius: 18px;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
+      min-height: 100vh;
       background:
-        radial-gradient(1200px 600px at 50% -10%, #fffaf2 0%, transparent 60%),
+        radial-gradient(900px 480px at 50% -8%, #fffdf8 0%, transparent 55%),
         linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
       color: var(--ink);
       font-family: var(--serif);
-      line-height: 1.85;
+      line-height: 1.9;
+      -webkit-font-smoothing: antialiased;
     }
-    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
-    a:hover { opacity: 0.85; }
-    .wrap { width: min(920px, calc(100% - 2rem)); margin: 0 auto; }
-    .wrap-wide { width: min(1040px, calc(100% - 2rem)); margin: 0 auto; }
+    ::selection { background: rgba(139, 58, 45, 0.15); color: var(--ink); }
+    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.22em; }
+    a:hover { opacity: 0.88; }
+    .wrap { width: min(880px, calc(100% - 2.25rem)); margin: 0 auto; }
+    .wrap-wide { width: min(980px, calc(100% - 2.25rem)); margin: 0 auto; }
+
     .nav {
       position: sticky; top: 0; z-index: 20;
-      backdrop-filter: blur(10px);
-      background: rgba(246, 241, 232, 0.82);
-      border-bottom: 1px solid rgba(217, 208, 194, 0.7);
+      backdrop-filter: blur(14px) saturate(1.1);
+      -webkit-backdrop-filter: blur(14px) saturate(1.1);
+      background: rgba(247, 242, 234, 0.78);
+      border-bottom: 1px solid rgba(221, 212, 198, 0.65);
     }
     .nav .inner {
-      display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem;
-      justify-content: center; padding: 0.85rem 0;
-      font-family: var(--sans); font-size: 0.86rem; letter-spacing: 0.12em;
+      display: flex; flex-wrap: wrap; gap: 0.65rem 1.4rem;
+      justify-content: center; padding: 0.9rem 0;
+      font-family: var(--sans); font-size: 0.84rem; letter-spacing: 0.18em;
+      font-weight: 500;
     }
-    .nav a { color: var(--ink-soft); text-decoration: none; }
+    .nav a { color: var(--ink-soft); text-decoration: none; transition: color 0.2s ease; }
     .nav a:hover { color: var(--accent); }
+
     .hero {
-      padding: 3.5rem 0 2rem;
+      padding: 3.25rem 0 2.75rem;
       text-align: center;
     }
     .portrait {
-      width: min(100%, 26rem);
-      margin: 0 auto 1.75rem;
-      border-radius: 18px;
+      width: min(100%, 24rem);
+      margin: 0 auto 2rem;
+      border-radius: var(--radius);
       overflow: hidden;
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
       background: #efe6da;
     }
     @media (min-width: 900px) {
-      .portrait { width: min(100%, 38rem); }
-      .hero { padding-top: 4rem; }
+      .portrait { width: min(100%, 34rem); }
+      .hero { padding: 4rem 0 3.25rem; }
     }
     @media (min-width: 1200px) {
-      .portrait { width: min(100%, 44rem); }
+      .portrait { width: min(100%, 38rem); }
     }
     .portrait img { display: block; width: 100%; height: auto; }
+
     .kicker {
-      margin: 0 0 0.85rem;
+      margin: 0 0 0.7rem;
       font-family: var(--sans);
-      font-size: 0.78rem;
-      letter-spacing: 0.28em;
+      font-size: 0.72rem;
+      letter-spacing: 0.32em;
       color: var(--muted);
+      font-weight: 500;
     }
     h1 {
       margin: 0;
       font-weight: 600;
-      font-size: clamp(2.1rem, 5vw, 3rem);
-      letter-spacing: 0.08em;
+      font-size: clamp(2.2rem, 5.2vw, 3.1rem);
+      letter-spacing: 0.22em;
+      text-indent: 0.22em;
     }
     .aka {
-      margin: 0.55rem 0 0;
+      margin: 0.65rem 0 0;
       color: var(--ink-soft);
-      font-size: 1.05rem;
-      letter-spacing: 0.14em;
-    }
-    .motto, .motto-foot {
-      white-space: pre-line;
-    }
-    .motto {
-      margin: 1.35rem auto 0;
-      max-width: 22rem;
-      padding: 0.95rem 1rem 0;
-      border-top: 1px solid var(--line);
-      color: var(--accent);
-      font-size: clamp(1.15rem, 2.6vw, 1.45rem);
-      letter-spacing: 0.42em;
-      font-weight: 500;
-    }
-    .motto-note {
-      margin: 0.45rem 0 0;
+      font-size: 1.02rem;
+      letter-spacing: 0.16em;
       font-family: var(--sans);
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-    }
-    .meta {
-      margin: 1.25rem auto 0;
-      max-width: 18rem;
-      color: var(--muted);
-      font-family: var(--sans);
-      font-size: 0.98rem;
-      letter-spacing: 0.28em;
-      font-weight: 500;
-    }
-    .meta span { display: inline-block; margin: 0 0.15rem; }
-    .meta .meta-dash {
-      margin: 0 0.55rem;
-      letter-spacing: 0;
-      color: var(--accent-soft);
       font-weight: 400;
     }
-    section { padding: 1.75rem 0; }
+    .motto {
+      white-space: pre-line;
+      margin: 1.75rem auto 0;
+      max-width: 20rem;
+      padding: 1.15rem 0.5rem 0;
+      border-top: 1px solid var(--line);
+      color: var(--accent);
+      font-size: clamp(1.12rem, 2.4vw, 1.38rem);
+      letter-spacing: 0.28em;
+      text-indent: 0.28em;
+      font-weight: 500;
+      line-height: 1.95;
+    }
+
+    main { padding-bottom: 1rem; }
+    section { padding: 2.1rem 0; }
     .section-title {
-      display: flex; align-items: baseline; gap: 0.85rem;
-      margin: 0 0 1.25rem;
-      padding-bottom: 0.7rem;
+      display: flex; align-items: baseline; gap: 0.9rem;
+      margin: 0 0 1.35rem;
+      padding-bottom: 0.75rem;
       border-bottom: 1px solid var(--line);
     }
     .section-title h2 {
       margin: 0;
-      font-size: 1.35rem;
+      font-size: 1.28rem;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.28em;
+      text-indent: 0.28em;
     }
     .section-title .en {
       font-family: var(--sans);
-      font-size: 0.72rem;
-      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
       color: var(--muted);
       text-transform: uppercase;
+      font-weight: 500;
     }
     .card {
       background: var(--card);
       border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 1.4rem 1.5rem;
+      border-radius: var(--radius);
+      padding: 1.55rem 1.65rem;
       box-shadow: var(--shadow);
     }
-    .obituary p, .obit-body p {
-      margin: 0 0 1rem;
-      color: var(--ink-soft);
-      font-size: 1.02rem;
-    }
-    .obituary p:last-child, .obit-body p:last-child { margin-bottom: 0; }
-    .note {
-      margin-top: 1rem;
-      padding: 0.85rem 1rem;
-      border-left: 3px solid var(--accent-soft);
-      color: var(--muted);
-      font-family: var(--sans);
-      font-size: 0.88rem;
-      background: rgba(255,255,255,0.45);
-    }
+
     .obit-formal {
       text-align: center;
-      padding: 1.75rem 1.4rem 1.5rem;
+      padding: 2rem 1.6rem 1.75rem;
     }
     .obit-formal .obit-head {
-      margin: 0 0 1.1rem;
-      font-size: 1.35rem;
-      letter-spacing: 0.35em;
+      margin: 0 0 1.25rem;
+      font-size: 1.4rem;
+      letter-spacing: 0.42em;
+      text-indent: 0.42em;
       font-weight: 600;
+      color: var(--ink);
     }
     .obit-formal .obit-body {
       text-align: justify;
       text-justify: inter-ideograph;
-      max-width: 38rem;
+      max-width: 36rem;
       margin: 0 auto;
     }
     .obit-formal .obit-body p {
+      margin: 0 0 1.05rem;
       text-indent: 2em;
-      line-height: 2;
+      line-height: 2.05;
+      color: var(--ink-soft);
+      font-size: 1.02rem;
     }
+    .obit-formal .obit-body p:last-child { margin-bottom: 0; }
     .obit-sign {
-      margin-top: 1.5rem;
+      margin-top: 1.75rem;
+      padding-top: 1.15rem;
+      border-top: 1px dashed var(--line);
       font-family: var(--sans);
       color: var(--ink-soft);
-      letter-spacing: 0.08em;
-      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      font-size: 0.92rem;
     }
-    /* Photo timeline */
-    .timeline-intro {
-      margin: -0.4rem 0 1.35rem;
-      color: var(--muted);
+
+    .service-grid {
+      display: grid;
+      gap: 1.1rem;
+    }
+    @media (min-width: 680px) {
+      .service-grid { grid-template-columns: 1.15fr 1fr; gap: 1.25rem; }
+    }
+    .label {
+      display: block;
       font-family: var(--sans);
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+      font-weight: 500;
     }
+    .value { color: var(--ink); font-size: 1.02rem; line-height: 1.7; }
+
+    /* Timeline */
     .timeline {
       list-style: none;
       margin: 0;
-      padding: 0;
+      padding: 0.25rem 0.85rem 0.35rem;
       position: relative;
     }
     .timeline::before {
       content: "";
       position: absolute;
       left: 0.55rem;
-      top: 0.4rem;
-      bottom: 0.4rem;
+      top: 0.6rem;
+      bottom: 0.6rem;
       width: 1px;
-      background: linear-gradient(180deg, transparent, var(--line) 8%, var(--line) 92%, transparent);
+      background: linear-gradient(180deg, transparent, var(--line) 6%, var(--line) 94%, transparent);
     }
     @media (min-width: 720px) {
-      .timeline::before { left: 9.35rem; }
+      .timeline::before { left: 8.85rem; }
     }
     .timeline > li {
       position: relative;
       display: grid;
-      gap: 0.85rem 1.25rem;
-      padding: 1.35rem 0 1.55rem 1.85rem;
-      border-bottom: 1px dashed var(--line);
+      gap: 0.75rem 1.35rem;
+      padding: 1.45rem 0 1.55rem 1.85rem;
+      border-bottom: 1px solid rgba(221, 212, 198, 0.7);
     }
     .timeline > li:last-child { border-bottom: 0; }
     @media (min-width: 720px) {
       .timeline > li {
-        grid-template-columns: 8.2rem 1fr;
+        grid-template-columns: 7.6rem 1fr;
         padding-left: 0;
       }
     }
     .timeline > li::before {
       content: "";
       position: absolute;
-      left: 0.35rem;
-      top: 1.7rem;
-      width: 0.55rem;
-      height: 0.55rem;
+      left: 0.32rem;
+      top: 1.85rem;
+      width: 0.5rem;
+      height: 0.5rem;
       border-radius: 50%;
-      background: var(--accent-soft);
+      background: #f7f2ea;
       border: 2px solid var(--accent);
-      box-shadow: 0 0 0 4px rgba(246, 241, 232, 0.9);
+      box-shadow: 0 0 0 3px rgba(196, 160, 144, 0.35);
     }
     @media (min-width: 720px) {
-      .timeline > li::before { left: 9.15rem; top: 1.85rem; }
+      .timeline > li::before { left: 8.66rem; top: 1.95rem; }
     }
     .timeline .year {
       font-family: var(--sans);
       color: var(--accent);
-      letter-spacing: 0.08em;
-      font-size: 0.88rem;
+      letter-spacing: 0.12em;
+      font-size: 0.86rem;
       font-weight: 600;
-      padding-top: 0.15rem;
-      line-height: 1.35;
+      padding-top: 0.2rem;
+      line-height: 1.45;
       word-break: keep-all;
     }
     .timeline .event { color: var(--ink-soft); }
     .timeline-photo {
-      margin: 0.65rem 0 0;
+      margin: 0.35rem 0 0;
       border-radius: 14px;
       overflow: hidden;
       border: 1px solid var(--line);
       background: #efe6da;
-      box-shadow: 0 10px 28px rgba(31, 28, 24, 0.06);
-      max-width: min(100%, 36rem);
+      box-shadow: 0 8px 24px rgba(31, 28, 24, 0.06);
+      max-width: min(100%, 34rem);
     }
     @media (min-width: 900px) {
-      .timeline-photo { max-width: min(100%, 42rem); }
+      .timeline-photo { max-width: min(100%, 40rem); }
     }
     .timeline-photo img {
       display: block;
       width: 100%;
       height: auto;
-      vertical-align: middle;
     }
     .timeline-photo figcaption {
       margin: 0;
-      padding: 0.7rem 0.95rem 0.85rem;
+      padding: 0.75rem 1rem 0.9rem;
       font-family: var(--sans);
-      font-size: 0.86rem;
-      letter-spacing: 0.04em;
+      font-size: 0.84rem;
+      letter-spacing: 0.08em;
       color: var(--muted);
-      background: rgba(255, 252, 247, 0.95);
+      background: rgba(255, 252, 247, 0.96);
       border-top: 1px solid var(--line);
     }
+
     .memories-intro {
-      margin: -0.4rem 0 1.1rem;
+      margin: -0.35rem 0 1.2rem;
       color: var(--muted);
       font-family: var(--sans);
       font-size: 0.9rem;
-      letter-spacing: 0.04em;
-      line-height: 1.7;
+      letter-spacing: 0.06em;
+      line-height: 1.75;
     }
-    .memory-form {
-      display: grid;
-      gap: 0.85rem;
-    }
+    .memory-form { display: grid; gap: 0.95rem; }
     .memory-form label {
       display: grid;
-      gap: 0.35rem;
+      gap: 0.4rem;
       font-family: var(--sans);
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
+      font-size: 0.76rem;
+      letter-spacing: 0.16em;
       color: var(--muted);
+      font-weight: 500;
     }
     .memory-form input,
     .memory-form textarea {
       width: 100%;
-      box-sizing: border-box;
       border: 1px solid var(--line);
-      border-radius: 10px;
+      border-radius: 12px;
       background: #fffdf9;
       color: var(--ink);
       font-family: var(--serif);
       font-size: 1rem;
       letter-spacing: 0.04em;
-      padding: 0.7rem 0.85rem;
+      padding: 0.78rem 0.95rem;
       outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .memory-form textarea {
-      min-height: 8rem;
+      min-height: 8.5rem;
       resize: vertical;
-      line-height: 1.7;
+      line-height: 1.8;
     }
     .memory-form input:focus,
     .memory-form textarea:focus {
       border-color: var(--accent-soft);
-      box-shadow: 0 0 0 3px rgba(166, 124, 82, 0.12);
+      box-shadow: 0 0 0 3px rgba(139, 58, 45, 0.1);
     }
-    .memory-form .row {
-      display: grid;
-      gap: 0.85rem;
-    }
+    .memory-form .row { display: grid; gap: 0.95rem; }
     @media (min-width: 640px) {
       .memory-form .row { grid-template-columns: 1fr 1fr; }
     }
     .memory-form button {
       justify-self: start;
-      margin-top: 0.25rem;
+      margin-top: 0.15rem;
       border: 0;
       border-radius: 999px;
       background: var(--accent);
       color: #fffaf3;
       font-family: var(--sans);
-      font-size: 0.88rem;
-      letter-spacing: 0.16em;
-      padding: 0.72rem 1.35rem;
+      font-size: 0.86rem;
+      letter-spacing: 0.18em;
+      padding: 0.78rem 1.5rem;
       cursor: pointer;
+      transition: filter 0.2s ease, transform 0.15s ease;
     }
-    .memory-form button:hover { filter: brightness(1.05); }
-    .memory-note {
-      margin: 0.85rem 0 0;
-      color: var(--muted);
+    .memory-form button:hover { filter: brightness(1.06); }
+    .memory-form button:active { transform: translateY(1px); }
+    .memory-status {
+      margin: 0.35rem 0 0;
       font-family: var(--sans);
-      font-size: 0.8rem;
+      font-size: 0.88rem;
       letter-spacing: 0.06em;
       line-height: 1.65;
+      color: var(--accent);
     }
-    .service-grid {
-      display: grid;
-      gap: 1rem;
-    }
-    @media (min-width: 680px) {
-      .service-grid { grid-template-columns: 1.2fr 1fr; }
-    }
-    .label {
-      display: block;
-      font-family: var(--sans);
-      font-size: 0.75rem;
-      letter-spacing: 0.16em;
+    .memory-status.is-error { color: #8b3a2d; }
+    .memory-status.is-ok { color: #3d6b4f; }
+    .memory-note {
+      margin: 1rem 0 0;
       color: var(--muted);
-      margin-bottom: 0.25rem;
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      line-height: 1.7;
     }
-    .value { color: var(--ink); font-size: 1.02rem; }
+
     footer {
-      padding: 2.5rem 0 3.5rem;
+      padding: 2.75rem 0 3.75rem;
       text-align: center;
       color: var(--muted);
       font-family: var(--sans);
@@ -389,43 +384,39 @@
       letter-spacing: 0.12em;
     }
     footer .seal {
-      display: inline-block;
-      margin-bottom: 0.75rem;
-      width: 2.2rem; height: 2.2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.9rem;
+      width: 2.35rem; height: 2.35rem;
       border: 1px solid var(--accent-soft);
       border-radius: 50%;
-      line-height: 2.1rem;
       color: var(--accent);
       font-family: var(--serif);
       font-size: 0.95rem;
+      letter-spacing: 0;
     }
-    footer .motto-foot {
-      margin: 0 0 0.65rem;
+    .closing-line {
+      margin: 0.35rem 0 0;
       font-family: var(--serif);
-      color: var(--accent);
-      letter-spacing: 0.35em;
-      font-size: 1rem;
+      font-size: 1.08rem;
+      letter-spacing: 0.28em;
+      text-indent: 0.28em;
+      color: var(--ink-soft);
     }
 
     @media (max-width: 640px) {
-      .hero { padding: 1.5rem 0 1rem; }
-      section { padding: 1.1rem 0; }
-      .section-title { margin-bottom: 0.75rem; padding-bottom: 0.45rem; }
-      .card { padding: 1rem 1.05rem; }
-      .portrait { margin-bottom: 1rem; }
-      .meta { margin-top: 0.9rem; padding-top: 0.75rem; }
-      .obit-formal { padding: 1.15rem 1rem 1rem; }
-      .obit-formal .obit-body p { line-height: 1.85; margin-bottom: 0.75rem; }
-      .timeline-entry { margin-bottom: 1rem; }
-      .nav .inner { padding: 0.55rem 0; gap: 0.55rem 0.9rem; }
-      footer { padding: 1.5rem 0 2.2rem; }
-    }
-    .closing-line {
-      margin: 1.25rem 0 0;
-      font-family: var(--serif);
-      font-size: 1.05rem;
-      letter-spacing: 0.2em;
-      color: var(--ink-soft);
+      .hero { padding: 1.75rem 0 1.5rem; }
+      section { padding: 1.35rem 0; }
+      .section-title { margin-bottom: 1rem; padding-bottom: 0.55rem; }
+      .card { padding: 1.15rem 1.1rem; }
+      .portrait { margin-bottom: 1.35rem; }
+      .obit-formal { padding: 1.35rem 1.05rem 1.2rem; }
+      .obit-formal .obit-body p { line-height: 1.9; margin-bottom: 0.85rem; }
+      .nav .inner { padding: 0.65rem 0; gap: 0.55rem 1rem; font-size: 0.8rem; }
+      footer { padding: 2rem 0 2.6rem; }
+      .timeline { padding-left: 0.35rem; padding-right: 0.35rem; }
+      .motto { letter-spacing: 0.18em; text-indent: 0.18em; }
     }
   </style>
 </head>
@@ -448,8 +439,6 @@
     <p class="aka">謝老師 · Daniel Tse</p>
     <p class="motto">人生到處知何似
 應似飛鴻踏雪泥</p>
-    
-
   </header>
 
   <main>
@@ -458,7 +447,7 @@
         <h2>訃文</h2>
         <span class="en">Obituary</span>
       </div>
-                  <div class="card obit-formal">
+      <div class="card obit-formal">
         <h3 class="obit-head">訃　聞</h3>
         <div class="obit-body">
           <p>不孝長男殷正率家人泣告：先父謝公諱純昌府君，平生剛正自持，待人以誠；與友相交，重信講義，古道熱腸；為夫為父，愛深且久，凡事默然肩承，家人皆知其心底溫厚。</p>
@@ -468,8 +457,7 @@
         </div>
         <div class="obit-sign">不孝長男　殷正　率家人　泣血稽顙</div>
       </div>
-      </div>
-</section>
+    </section>
 
     <section id="service" class="wrap">
       <div class="section-title">
@@ -504,7 +492,7 @@
             <div class="year">童年時光</div>
             <div class="event">
               <figure class="timeline-photo">
-                <img src="timeline/01-early-bw.jpg" alt="兄父" loading="lazy" width="1245" height="1192" />
+                <img src="timeline/01-early-bw.jpg" alt="兄父" loading="lazy" width="1298" height="1261" />
                 <figcaption>兄父</figcaption>
               </figure>
             </div>
@@ -591,20 +579,20 @@
             </div>
           </li>
           <li>
-            <div class="year">從心所欲</div>
-            <div class="event">
-              <figure class="timeline-photo">
-                <img src="timeline/12-family-sandcastle.jpg" alt="家庭之樂" loading="lazy" width="1600" height="1200" />
-                <figcaption>家庭之樂</figcaption>
-              </figure>
-            </div>
-          </li>
-          <li>
             <div class="year">頑疾復發</div>
             <div class="event">
               <figure class="timeline-photo">
                 <img src="timeline/13-leisure-rooftop.jpg" alt="積極抗癌" loading="lazy" width="1050" height="1400" />
                 <figcaption>積極抗癌</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">從心所欲</div>
+            <div class="event">
+              <figure class="timeline-photo">
+                <img src="timeline/12-family-sandcastle.jpg" alt="家庭之樂" loading="lazy" width="1600" height="1200" />
+                <figcaption>家庭之樂</figcaption>
               </figure>
             </div>
           </li>
@@ -696,25 +684,25 @@
       </div>
       <p class="memories-intro">歡迎親友留下對謝老師的思念與祝福。留言將寄至家人信箱，由家人妥為珍存。</p>
       <div class="card memories">
-        <form class="memory-form" action="https://formsubmit.co/tsefamily18hr@gmail.com" method="POST">
+        <form class="memory-form" id="memory-form" action="https://formsubmit.co/tsefamily18hr@gmail.com" method="POST">
           <input type="hidden" name="_subject" value="追思留言 · 謝純昌老師" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_template" value="box" />
-          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="text" name="_gotcha" value="" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <div class="row">
             <label>姓名
-              <input type="text" name="姓名" required maxlength="80" placeholder="您的姓名" />
+              <input type="text" name="name" required maxlength="80" placeholder="您的姓名" />
             </label>
             <label>關係（選填）
-              <input type="text" name="關係" maxlength="80" placeholder="如：學生、親友、同事" />
+              <input type="text" name="relation" maxlength="80" placeholder="如：學生、親友、同事" />
             </label>
           </div>
           <label>留言
-            <textarea name="留言" required maxlength="2000" placeholder="想對謝老師說的話……"></textarea>
+            <textarea name="message" required maxlength="2000" placeholder="想對謝老師說的話……"></textarea>
           </label>
-          <button type="submit">送出留言</button>
+          <button type="submit" id="memory-submit">送出留言</button>
+          <p class="memory-status" id="memory-status" hidden></p>
         </form>
-        <p class="memory-note">送出後將以電郵通知家人。請勿留下敏感個人資料。</p>
+        <p class="memory-note">送出後將以電郵通知家人。若是第一次使用，家人信箱會先收到 FormSubmit 確認信，點開啟動後留言即可正常送達。請勿留下敏感個人資料。</p>
       </div>
     </section>
   </main>
@@ -723,5 +711,47 @@
     <div class="seal">念</div>
     <p class="closing-line">父愛如山，巍峨無言。</p>
   </footer>
+
+  <script>
+    (function () {
+      var form = document.getElementById("memory-form");
+      if (!form) return;
+      var statusEl = document.getElementById("memory-status");
+      var btn = document.getElementById("memory-submit");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        statusEl.hidden = false;
+        statusEl.className = "memory-status";
+        statusEl.textContent = "送出中……";
+        btn.disabled = true;
+        var data = new FormData(form);
+        fetch("https://formsubmit.co/ajax/tsefamily18hr@gmail.com", {
+          method: "POST",
+          body: data,
+          headers: { Accept: "application/json" }
+        }).then(function (res) {
+          return res.json().then(function (body) {
+            return { ok: res.ok, body: body, status: res.status };
+          }).catch(function () {
+            return { ok: res.ok, body: null, status: res.status };
+          });
+        }).then(function (result) {
+          if (result.ok) {
+            statusEl.className = "memory-status is-ok";
+            statusEl.textContent = "謝謝您的留言。家人已收到通知。";
+            form.reset();
+          } else {
+            statusEl.className = "memory-status is-error";
+            statusEl.textContent = "送出未成功。請稍後再試，或直接電郵 tsefamily18hr@gmail.com。若是首次使用，請先到該信箱確認 FormSubmit 啟動信。";
+          }
+        }).catch(function () {
+          statusEl.className = "memory-status is-error";
+          statusEl.textContent = "網路異常，請稍後再試，或電郵 tsefamily18hr@gmail.com。";
+        }).finally(function () {
+          btn.disabled = false;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
