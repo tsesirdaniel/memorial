@@ -23,13 +23,28 @@
     main {
       max-width: 42rem;
       margin: 0 auto;
-      padding: 3rem 1.25rem 4rem;
+      padding: 2.5rem 1.25rem 4rem;
     }
     header {
       text-align: center;
       border-bottom: 1px solid var(--line);
       padding-bottom: 1.75rem;
       margin-bottom: 2rem;
+    }
+    .portrait {
+      width: min(100%, 28rem);
+      margin: 0 auto 1.5rem;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #efe8de;
+      box-shadow: 0 10px 28px rgba(44, 42, 38, 0.08);
+    }
+    .portrait img {
+      display: block;
+      width: 100%;
+      height: auto;
+      vertical-align: middle;
     }
     .eyebrow {
       letter-spacing: 0.18em;
@@ -72,6 +87,9 @@
 <body>
   <main>
     <header>
+      <figure class="portrait">
+        <img src="portrait.jpg" alt="謝純昌於櫻花道回眸" width="1600" height="2133" />
+      </figure>
       <p class="eyebrow">Sample memorial page</p>
       <h1>紀念 謝純昌</h1>
       <p class="aka">謝老師 · Chun-cheong</p>
@@ -79,7 +97,7 @@
 
     <section class="card">
       <h2>這是樣本頁</h2>
-      <p>此頁放在 GitHub 帳號 <strong>tsesirdaniel</strong>，方便之後改成正式紀念站或投影內容。生卒年份、訃聞與相片可再補上。</p>
+      <p>此頁放在 GitHub 帳號 <strong>tsesirdaniel</strong>，方便之後改成正式紀念站或投影內容。生卒年份、訃聞與更多相片可再補上。</p>
     </section>
 
     <section class="card">
@@ -87,7 +105,7 @@
       <ul>
         <li>生卒年份</li>
         <li>追思會場地與時間</li>
-        <li>遺照與精選相片</li>
+        <li>更多精選相片</li>
         <li>親友留言</li>
       </ul>
     </section>
