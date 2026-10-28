@@ -109,14 +109,21 @@
       color: var(--muted);
     }
     .meta {
-      margin: 1.1rem auto 0;
-      max-width: 28rem;
+      margin: 1.25rem auto 0;
+      max-width: 18rem;
       color: var(--muted);
       font-family: var(--sans);
-      font-size: 0.92rem;
-      letter-spacing: 0.06em;
+      font-size: 0.98rem;
+      letter-spacing: 0.28em;
+      font-weight: 500;
     }
-    .meta span { display: inline-block; margin: 0 0.35rem; }
+    .meta span { display: inline-block; margin: 0 0.15rem; }
+    .meta .meta-dash {
+      margin: 0 0.55rem;
+      letter-spacing: 0;
+      color: var(--accent-soft);
+      font-weight: 400;
+    }
     section { padding: 1.75rem 0; }
     .section-title {
       display: flex; align-items: baseline; gap: 0.85rem;
@@ -394,11 +401,9 @@
 應似飛鴻踏雪泥。</p>
     
     <p class="meta">
-      <span>一九五九年四月一日</span>
-      <span>—</span>
-      <span>二〇二六年十月二十七日</span>
-      <span>·</span>
-      <span>香港</span>
+      <span>一九五九</span>
+      <span class="meta-dash">—</span>
+      <span>二〇二六</span>
     </p>
   </header>
 
