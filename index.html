@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="theme-color" content="#f7f2ea" />
   <title>紀念 謝純昌 · 謝老師</title>
   <meta name="description" content="紀念謝純昌老師。靜靜追思，溫柔記得。人生到處知何似 應似飛鴻踏雪泥" />
   <link rel="icon" href="favicon.ico" sizes="any" />
@@ -14,6 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
+      color-scheme: light only;
       --paper: #f7f2ea;
       --paper-deep: #ebe4d7;
       --ink: #1c1915;
@@ -22,24 +25,49 @@
       --line: #ddd4c6;
       --accent: #8b3a2d;
       --accent-soft: #c4a090;
-      --card: rgba(255, 252, 247, 0.94);
+      --card: #fffcf7;
       --shadow: 0 16px 40px rgba(31, 28, 24, 0.07);
       --serif: "Noto Serif TC", "Source Han Serif TC", "Songti TC", "PingFang TC", serif;
       --sans: "Noto Sans TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif;
       --radius: 18px;
+      supported-color-schemes: light;
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      color-scheme: light only;
+      background: #f7f2ea;
+    }
     body {
       margin: 0;
       min-height: 100vh;
-      background:
+      background-color: #f7f2ea;
+      background-image:
         radial-gradient(900px 480px at 50% -8%, #fffdf8 0%, transparent 55%),
-        linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
-      color: var(--ink);
+        linear-gradient(180deg, #f7f2ea 0%, #ebe4d7 100%);
+      color: #1c1915;
       font-family: var(--serif);
       line-height: 1.9;
       -webkit-font-smoothing: antialiased;
+    }
+    /* Keep forced-light look if Android still tries to invert */
+    @media (prefers-color-scheme: dark) {
+      :root, html, body {
+        color-scheme: light only;
+        background-color: #f7f2ea !important;
+        color: #1c1915 !important;
+      }
+      .nav, .motto, footer, .seal {
+        background-color: #f7f2ea !important;
+        color: #1c1915 !important;
+      }
+      .card, .obit, .wall-note, .tribute-form, input, textarea, select, button {
+        background-color: #fffcf7 !important;
+        color: #1c1915 !important;
+        border-color: #ddd4c6 !important;
+      }
+      a { color: #8b3a2d !important; }
+      .muted, .nav a, .obit-sign { color: #4a443c !important; }
     }
     ::selection { background: rgba(139, 58, 45, 0.15); color: var(--ink); }
     a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.22em; }
@@ -51,8 +79,9 @@
       position: sticky; top: 0; z-index: 20;
       backdrop-filter: blur(14px) saturate(1.1);
       -webkit-backdrop-filter: blur(14px) saturate(1.1);
-      background: var(--paper);
+      background: #f7f2ea;
       border-bottom: none;
+      color-scheme: light only;
     }
     .nav .inner {
       display: flex; flex-wrap: wrap; gap: 1rem 3.25rem;
@@ -124,8 +153,9 @@
       letter-spacing: 0.28em;
       font-weight: 500;
       line-height: 1.7;
-      background: var(--paper);
-      box-shadow: 0 -14px 0 0 var(--paper);
+      background: #f7f2ea;
+      box-shadow: 0 -14px 0 0 #f7f2ea;
+      color-scheme: light only;
     }
     .motto-line {
       grid-area: 1 / 1;
