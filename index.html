@@ -114,9 +114,8 @@
       z-index: 15;
       display: grid;
       place-items: center;
-      width: 100vw;
-      max-width: 100vw;
-      margin: 0 calc(50% - 50vw) 0.75rem;
+      width: 100%;
+      margin: 0;
       min-height: 2.35em;
       padding: 0.55rem 1rem 0.75rem;
       border-bottom: 1px solid var(--line);
@@ -126,7 +125,7 @@
       font-weight: 500;
       line-height: 1.7;
       background: var(--paper);
-      box-shadow: 0 -12px 0 0 var(--paper);
+      box-shadow: 0 -14px 0 0 var(--paper);
     }
     .motto-line {
       grid-area: 1 / 1;
@@ -234,10 +233,12 @@
       margin-top: 1.75rem;
       padding-top: 1.15rem;
       border-top: 1px dashed var(--line);
-      font-family: var(--sans);
+      font-family: inherit;
       color: var(--ink-soft);
-      letter-spacing: 0.1em;
-      font-size: 0.92rem;
+      letter-spacing: normal;
+      font-size: 1.02rem;
+      line-height: 2.05;
+      font-weight: 400;
     }
 
     .service-grid {
@@ -465,6 +466,20 @@
       font-family: var(--serif);
       font-size: 0.95rem;
       letter-spacing: 0;
+      background: transparent;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+    footer .seal:hover {
+      background: rgba(139, 58, 45, 0.08);
+      border-color: var(--accent);
+      color: var(--accent);
+      opacity: 1;
+    }
+    footer .seal:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
     .closing-line {
       margin: 0.35rem 0 0;
@@ -574,7 +589,7 @@
 
   </style>
 </head>
-<body>
+<body id="top">
   <nav class="nav" aria-label="頁內導覽">
     <div class="wrap inner">
       <a href="#obituary">訃聞</a>
@@ -584,11 +599,12 @@
     </div>
   </nav>
 
+  <p class="motto" aria-label="人生到處知何似 應似飛鴻踏雪泥">
+    <span class="motto-line motto-line--a">人生到處知何似</span>
+    <span class="motto-line motto-line--b">應似飛鴻踏雪泥</span>
+  </p>
+
   <header class="hero wrap">
-    <p class="motto" aria-label="人生到處知何似 應似飛鴻踏雪泥">
-      <span class="motto-line motto-line--a">人生到處知何似</span>
-      <span class="motto-line motto-line--b">應似飛鴻踏雪泥</span>
-    </p>
     <figure class="portrait">
       <img src="portrait.jpg" alt="謝純昌老師於櫻花道回眸" width="1600" height="2133" />
     </figure>
@@ -840,7 +856,7 @@
 </main>
 
   <footer>
-    <div class="seal">念</div>
+    <a class="seal" href="#top" id="back-to-top" aria-label="回到頂部">念</a>
     <p class="closing-line">巍峨無言，父愛如山。</p>
   </footer>
 
@@ -849,20 +865,21 @@
   <script>
     (function () {
       var motto = document.querySelector(".motto");
+      var nav = document.querySelector(".nav");
       if (!motto) return;
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         return;
       }
-      var portrait = document.querySelector(".portrait");
+      function navH() {
+        return nav ? Math.ceil(nav.getBoundingClientRect().height) : 56;
+      }
+      function place() {
+        motto.style.top = navH() + "px";
+      }
       function sync() {
+        place();
         var y = window.scrollY || document.documentElement.scrollTop || 0;
-        // Swap once the visitor has scrolled into the portrait (motto stays sticky under nav).
-        var threshold = 72;
-        if (portrait) {
-          var top = portrait.getBoundingClientRect().top + y;
-          threshold = Math.max(48, top - 120);
-        }
-        if (y >= threshold) motto.classList.add("is-swapped");
+        if (y >= 56) motto.classList.add("is-swapped");
         else motto.classList.remove("is-swapped");
       }
       window.addEventListener("scroll", sync, { passive: true });
