@@ -48,7 +48,7 @@
     .nav a { color: var(--ink-soft); text-decoration: none; }
     .nav a:hover { color: var(--accent); }
     .hero {
-      padding: 3.5rem 0 2.5rem;
+      padding: 3.5rem 0 2rem;
       text-align: center;
     }
     .portrait {
@@ -61,17 +61,11 @@
       background: #efe6da;
     }
     @media (min-width: 900px) {
-      .portrait {
-        width: min(100%, 38rem);
-      }
-      .hero {
-        padding-top: 4rem;
-      }
+      .portrait { width: min(100%, 38rem); }
+      .hero { padding-top: 4rem; }
     }
     @media (min-width: 1200px) {
-      .portrait {
-        width: min(100%, 44rem);
-      }
+      .portrait { width: min(100%, 44rem); }
     }
     .portrait img { display: block; width: 100%; height: auto; }
     .kicker {
@@ -104,9 +98,7 @@
       letter-spacing: 0.06em;
     }
     .meta span { display: inline-block; margin: 0 0.35rem; }
-    section {
-      padding: 2.4rem 0;
-    }
+    section { padding: 2.1rem 0; }
     .section-title {
       display: flex; align-items: baseline; gap: 0.85rem;
       margin: 0 0 1.25rem;
@@ -133,12 +125,12 @@
       padding: 1.4rem 1.5rem;
       box-shadow: var(--shadow);
     }
-    .obituary p {
+    .obituary p, .obit-body p {
       margin: 0 0 1rem;
       color: var(--ink-soft);
       font-size: 1.02rem;
     }
-    .obituary p:last-child { margin-bottom: 0; }
+    .obituary p:last-child, .obit-body p:last-child { margin-bottom: 0; }
     .note {
       margin-top: 1rem;
       padding: 0.85rem 1rem;
@@ -147,6 +139,33 @@
       font-family: var(--sans);
       font-size: 0.88rem;
       background: rgba(255,255,255,0.45);
+    }
+    .obit-formal {
+      text-align: center;
+      padding: 1.75rem 1.4rem 1.5rem;
+    }
+    .obit-formal .obit-head {
+      margin: 0 0 1.1rem;
+      font-size: 1.35rem;
+      letter-spacing: 0.35em;
+      font-weight: 600;
+    }
+    .obit-formal .obit-body {
+      text-align: justify;
+      text-justify: inter-ideograph;
+      max-width: 38rem;
+      margin: 0 auto;
+    }
+    .obit-formal .obit-body p {
+      text-indent: 2em;
+      line-height: 2;
+    }
+    .obit-sign {
+      margin-top: 1.5rem;
+      font-family: var(--sans);
+      color: var(--ink-soft);
+      letter-spacing: 0.08em;
+      font-size: 0.95rem;
     }
     .timeline { list-style: none; margin: 0; padding: 0; }
     .timeline li {
@@ -186,9 +205,6 @@
       transition: transform 0.45s ease;
     }
     .gallery figure:hover img { transform: scale(1.03); }
-    .gallery figcaption {
-      display: none;
-    }
     .memories .empty {
       color: var(--muted);
       font-family: var(--sans);
@@ -234,11 +250,11 @@
 <body>
   <nav class="nav" aria-label="頁內導覽">
     <div class="wrap inner">
-      <a href="#obituary">生平</a>
+      <a href="#service">治喪</a>
+      <a href="#obituary">訃文</a>
       <a href="#timeline">年表</a>
       <a href="#gallery">相冊</a>
       <a href="#memories">留言</a>
-      <a href="#service">治喪</a>
     </div>
   </nav>
 
@@ -257,15 +273,39 @@
   </header>
 
   <main>
+    <section id="service" class="wrap">
+      <div class="section-title">
+        <h2>治喪資訊</h2>
+        <span class="en">Service</span>
+      </div>
+      <div class="service-grid">
+        <div class="card">
+          <span class="label">場地</span>
+          <div class="value">沙田賽馬會善寧之家</div>
+          <p style="margin:0.85rem 0 0;color:var(--muted);font-family:var(--sans);font-size:0.9rem;">設靈／出殯日期與時間待確認後補上。</p>
+        </div>
+        <div class="card">
+          <span class="label">禮儀</span>
+          <div class="value">佛道</div>
+          <p style="margin:0.85rem 0 0;color:var(--muted);font-family:var(--sans);font-size:0.9rem;">破地獄等細節，請先向善寧之家查詢確認。</p>
+        </div>
+      </div>
+    </section>
+
     <section id="obituary" class="wrap">
       <div class="section-title">
-        <h2>生平</h2>
+        <h2>訃文</h2>
         <span class="en">Obituary</span>
       </div>
-      <div class="card obituary">
-        <p>謝純昌先生，人稱謝老師。一生執教，溫厚持躬，桃李遍及四方。課堂之外，亦以家人為念，溫言細語，常在身旁。</p>
-        <p>師者風範，不在宏言，而在日日之誠。學生感念其誨人不倦；親友記得其溫柔與沉穩。今日追思，願以安靜之心，記得他所留下的光。</p>
-        <p class="note">此為樣本草稿，僅作版式參考。正式訃聞、生卒年份與細節，請再告訴我後補上；我不會自行編造生平。</p>
+      <div class="card obit-formal">
+        <h3 class="obit-head">訃　聞</h3>
+        <div class="obit-body">
+          <p>先父謝公純昌府君，一生執教，溫厚持躬，誨人不倦，桃李滿門。平日待人以誠，持家以和，親友學生，皆感其德。</p>
+          <p>茲定於（日期待補）在沙田賽馬會善寧之家設靈，並以佛道儀式治喪。哀此訃聞。</p>
+          <p>生卒年份、確實時辰與家屬稱謂，待核實後再行更正；本稿僅供版式與文氣參考。</p>
+        </div>
+        <div class="obit-sign">護喪家人　泣啟</div>
+        <p class="note">以上為樣本訃文，非正式定稿。請提供生卒年份、設靈／出殯時間與署名方式後，我再改成可用版本。</p>
       </div>
     </section>
 
@@ -290,7 +330,7 @@
           </li>
           <li>
             <div class="year">待補</div>
-            <div class="event">安息 · 追思會詳見治喪資訊</div>
+            <div class="event">安息 · 詳見治喪資訊</div>
           </li>
         </ul>
       </div>
@@ -319,26 +359,7 @@
         <span class="en">Memory wall</span>
       </div>
       <div class="card memories">
-        <p class="empty">此處預留給親友追思留言。樣本頁暫未接表單；若需要，我可以再加「留言」功能或連到外部表格。</p>
-      </div>
-    </section>
-
-    <section id="service" class="wrap">
-      <div class="section-title">
-        <h2>治喪資訊</h2>
-        <span class="en">Service</span>
-      </div>
-      <div class="service-grid">
-        <div class="card">
-          <span class="label">場地</span>
-          <div class="value">沙田賽馬會善寧之家</div>
-          <p style="margin:0.85rem 0 0;color:var(--muted);font-family:var(--sans);font-size:0.9rem;">日期與時間待確認後補上。</p>
-        </div>
-        <div class="card">
-          <span class="label">禮儀</span>
-          <div class="value">佛道</div>
-          <p style="margin:0.85rem 0 0;color:var(--muted);font-family:var(--sans);font-size:0.9rem;">破地獄等細節，請先向善寧之家查詢確認。</p>
-        </div>
+        <p class="empty">此處預留給親友追思留言。樣本頁暫未接表單；若需要，我可以再加留言功能。</p>
       </div>
     </section>
   </main>
