@@ -437,6 +437,90 @@
       .timeline { padding-left: 0.35rem; padding-right: 0.35rem; }
       .motto { letter-spacing: 0.18em; text-indent: 0.18em; }
     }
+  
+    .memory-wall-list { display: grid; gap: 0.9rem; margin: 0 0 1.5rem; }
+    .memory-wall-list:empty { display: none; }
+    .memory-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,252,247,0.92);
+      padding: 1rem 1.15rem 1.05rem;
+      box-shadow: 0 6px 18px rgba(31,28,24,0.04);
+    }
+    .memory-card .who {
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      font-weight: 600;
+      margin: 0 0 0.35rem;
+    }
+    .memory-card .who span { font-weight: 500; color: var(--muted); }
+    .memory-card .when {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 0 0 0.65rem;
+    }
+    .memory-card .body {
+      margin: 0;
+      white-space: pre-wrap;
+      line-height: 1.75;
+      color: var(--ink-soft);
+    }
+    .memory-empty {
+      text-align: center;
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      margin: 0 0 1.25rem;
+    }
+    .memory-form-title {
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin: 0 0 0.85rem;
+      text-align: center;
+    }
+
+  
+    /* hcb memorial overrides */
+    #HCB_comment_box {
+      margin: 0 0 0.5rem;
+      font-family: var(--serif);
+      color: var(--ink);
+    }
+    #HCB_comment_box h3,
+    #HCB_comment_box .hcb-comment-n,
+    #HCB_comment_box .home-desc { display: none !important; }
+    #HCB_comment_box textarea,
+    #HCB_comment_box input[type="text"],
+    #HCB_comment_box input[type="email"] {
+      border: 1px solid var(--line) !important;
+      border-radius: 10px !important;
+      background: #fffdf9 !important;
+      font-family: var(--sans) !important;
+      box-shadow: none !important;
+    }
+    #HCB_comment_box .btn,
+    #HCB_comment_box button,
+    #HCB_comment_box input[type="submit"] {
+      background: var(--accent) !important;
+      border: none !important;
+      border-radius: 999px !important;
+      letter-spacing: 0.12em !important;
+      font-family: var(--sans) !important;
+      padding: 0.55rem 1.25rem !important;
+    }
+    #HCB_comment_box .hcb-wrapper,
+    #HCB_comment_box .hcb-comment {
+      border-color: var(--line) !important;
+      background: rgba(255,252,247,0.92) !important;
+      border-radius: 14px !important;
+    }
+
   </style>
 </head>
 <body>
@@ -682,81 +766,31 @@
       </div>
     </section>
 
-    <section id="memories" class="wrap">
+            <section id="memories" class="wrap">
       <div class="section-title">
         <h2>留言牆</h2>
         <span class="en">Memory wall</span>
       </div>
-      <p class="memories-intro">歡迎親友留下對謝老師的思念與祝福。留言將寄至家人信箱，由家人妥為珍存。</p>
+      <p class="memories-intro">歡迎親友留下對謝老師的思念與祝福。所有留言會公開顯示於下方。</p>
       <div class="card memories">
-        <form class="memory-form" id="memory-form" action="https://formsubmit.co/tsefamily18hr@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="追思留言 · 謝純昌老師" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="text" name="_gotcha" value="" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <div class="row">
-            <label>姓名
-              <input type="text" name="name" required maxlength="80" placeholder="您的姓名" />
-            </label>
-            <label>關係（選填）
-              <input type="text" name="relation" maxlength="80" placeholder="如：學生、親友、同事" />
-            </label>
-          </div>
-          <label>留言
-            <textarea name="message" required maxlength="2000" placeholder="想對謝老師說的話……"></textarea>
-          </label>
-          <button type="submit" id="memory-submit">送出留言</button>
-          <p class="memory-status" id="memory-status" hidden></p>
-        </form>
-        <p class="memory-note">送出後將以電郵通知家人。若是第一次使用，家人信箱會先收到 FormSubmit 確認信，點開啟動後留言即可正常送達。請勿留下敏感個人資料。</p>
+<!-- begin htmlcommentbox.com -->
+ <div id="HCB_comment_box">留言載入中……</div>
+ <link rel="stylesheet" type="text/css" href="https://www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
+ <script type="text/javascript" id="hcb">/*<!--*/ if(!window.hcb_user){hcb_user={};}
+ hcb_user.PAGE="https://tsesirdaniel.github.io/memorial/";
+ hcb_user.TRANSLATE="zh-tw";
+ (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="https://www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=0"+"&n=0"+"&sso=0"+"&r="+Math.random());s.setAttribute("async","true");s.setAttribute("charset","utf-8");if (hcb_user.PAGE) s.setAttribute("defer","true");document.getElementById("hcb").parentNode.insertBefore(s, document.getElementById("hcb"));})(); /*-->*/</script>
+<!-- end htmlcommentbox.com -->
+        <p class="memory-note">請勿留下敏感個人資料。家人可於留言系統後台移除不當內容。</p>
       </div>
     </section>
-  </main>
+</main>
 
   <footer>
     <div class="seal">念</div>
     <p class="closing-line">父愛如山，巍峨無言。</p>
   </footer>
 
-  <script>
-    (function () {
-      var form = document.getElementById("memory-form");
-      if (!form) return;
-      var statusEl = document.getElementById("memory-status");
-      var btn = document.getElementById("memory-submit");
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        statusEl.hidden = false;
-        statusEl.className = "memory-status";
-        statusEl.textContent = "送出中……";
-        btn.disabled = true;
-        var data = new FormData(form);
-        fetch("https://formsubmit.co/ajax/tsefamily18hr@gmail.com", {
-          method: "POST",
-          body: data,
-          headers: { Accept: "application/json" }
-        }).then(function (res) {
-          return res.json().then(function (body) {
-            return { ok: res.ok, body: body, status: res.status };
-          }).catch(function () {
-            return { ok: res.ok, body: null, status: res.status };
-          });
-        }).then(function (result) {
-          if (result.ok) {
-            statusEl.className = "memory-status is-ok";
-            statusEl.textContent = "謝謝您的留言。家人已收到通知。";
-            form.reset();
-          } else {
-            statusEl.className = "memory-status is-error";
-            statusEl.textContent = "送出未成功。請稍後再試，或直接電郵 tsefamily18hr@gmail.com。若是首次使用，請先到該信箱確認 FormSubmit 啟動信。";
-          }
-        }).catch(function () {
-          statusEl.className = "memory-status is-error";
-          statusEl.textContent = "網路異常，請稍後再試，或電郵 tsefamily18hr@gmail.com。";
-        }).finally(function () {
-          btn.disabled = false;
-        });
-      });
-    })();
-  </script>
+    
 </body>
 </html>
