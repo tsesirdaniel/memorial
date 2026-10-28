@@ -120,6 +120,23 @@
       text-indent: 0.28em;
       font-weight: 500;
       line-height: 1.95;
+      opacity: 0;
+      transform: translateY(0.55rem);
+      transition: opacity 1.8s ease, transform 1.8s ease, border-color 1.8s ease;
+      border-bottom-color: transparent;
+    }
+    .motto.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      border-bottom-color: var(--line);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .motto {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        border-bottom-color: var(--line);
+      }
     }
 
     main { padding-bottom: 1rem; }
@@ -792,5 +809,26 @@
   </footer>
 
     
+
+  <script>
+    (function () {
+      var motto = document.querySelector(".motto");
+      if (!motto) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        motto.classList.add("is-visible");
+        return;
+      }
+      var revealed = false;
+      function reveal() {
+        if (revealed) return;
+        if (window.scrollY < 36) return;
+        revealed = true;
+        motto.classList.add("is-visible");
+        window.removeEventListener("scroll", reveal);
+      }
+      window.addEventListener("scroll", reveal, { passive: true });
+      reveal();
+    })();
+  </script>
 </body>
 </html>
