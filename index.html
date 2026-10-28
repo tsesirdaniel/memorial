@@ -266,6 +266,25 @@
       word-break: keep-all;
     }
     .timeline .event { color: var(--ink-soft); }
+    .timeline-photos {
+      display: grid;
+      gap: 0.85rem;
+      max-width: min(100%, 40rem);
+    }
+    @media (min-width: 720px) {
+      .timeline-photos {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+      .timeline-photos .timeline-photo { max-width: none; margin-top: 0.35rem; }
+    }
+    @media (min-width: 900px) {
+      .timeline-photos--triple {
+        grid-template-columns: 1fr 1fr 1fr;
+        max-width: min(100%, 48rem);
+      }
+    }
+
     .timeline-photo {
       margin: 0.35rem 0 0;
       border-radius: 14px;
@@ -480,12 +499,11 @@
 
 
 
-    <section id="timeline" class="wrap-wide">
+        <section id="timeline" class="wrap-wide">
       <div class="section-title">
         <h2>年表</h2>
         <span class="en">Timeline</span>
       </div>
-      
       <div class="card" style="padding: 0.6rem 1.25rem 0.4rem;">
         <ul class="timeline">
           <li>
@@ -617,46 +635,34 @@
           <li>
             <div class="year">2024</div>
             <div class="event">
-              <figure class="timeline-photo">
-                <img src="timeline/17-travel-kimono.jpg" alt="川越和服留影" loading="lazy" width="1600" height="1066" />
-                <figcaption>川越和服留影</figcaption>
-              </figure>
-            </div>
-          </li>
-          <li>
-            <div class="year">2024</div>
-            <div class="event">
-              <figure class="timeline-photo">
-                <img src="timeline/18-travel-ema.jpg" alt="川越和服留影" loading="lazy" width="933" height="1400" />
-                <figcaption>川越和服留影</figcaption>
-              </figure>
+              <div class="timeline-photos">
+                <figure class="timeline-photo">
+                  <img src="timeline/17-travel-kimono.jpg" alt="川越和服留影" loading="lazy" width="1600" height="1066" />
+                  <figcaption>川越和服留影</figcaption>
+                </figure>
+                <figure class="timeline-photo">
+                  <img src="timeline/18-travel-ema.jpg" alt="川越和服留影" loading="lazy" width="933" height="1400" />
+                </figure>
+              </div>
             </div>
           </li>
           <li>
             <div class="year">2025</div>
             <div class="event">
-              <figure class="timeline-photo">
-                <img src="timeline/21-travel-sky-mirror.jpg" alt="海闊天空" loading="lazy" width="1400" height="1050" />
-                <figcaption>海闊天空</figcaption>
-              </figure>
-            </div>
-          </li>
-          <li>
-            <div class="year">2025</div>
-            <div class="event">
-              <figure class="timeline-photo">
-                <img src="timeline/22-family-beach-run.jpg" alt="石灘奔跑" loading="lazy" width="1050" height="1400" />
-                <figcaption>石灘奔跑</figcaption>
-              </figure>
-            </div>
-          </li>
-          <li>
-            <div class="year">2025</div>
-            <div class="event">
-              <figure class="timeline-photo">
-                <img src="timeline/24-travel-sandboard.jpg" alt="沙丘滑沙" loading="lazy" width="933" height="1400" />
-                <figcaption>沙丘滑沙</figcaption>
-              </figure>
+              <div class="timeline-photos timeline-photos--triple">
+                <figure class="timeline-photo">
+                  <img src="timeline/21-travel-sky-mirror.jpg" alt="海闊天空" loading="lazy" width="1400" height="1050" />
+                  <figcaption>海闊天空</figcaption>
+                </figure>
+                <figure class="timeline-photo">
+                  <img src="timeline/22-family-beach-run.jpg" alt="石灘奔跑" loading="lazy" width="1050" height="1400" />
+                  <figcaption>石灘奔跑</figcaption>
+                </figure>
+                <figure class="timeline-photo">
+                  <img src="timeline/24-travel-sandboard.jpg" alt="沙丘滑沙" loading="lazy" width="933" height="1400" />
+                  <figcaption>沙丘滑沙</figcaption>
+                </figure>
+              </div>
             </div>
           </li>
           <li>
@@ -670,11 +676,10 @@
           </li>
           <li>
             <div class="year">2026</div>
-            <div class="event">安息 · 詳見治喪資訊。</div>
+            <div class="event">安息 · <a href="#service">詳見治喪資訊</a>。</div>
           </li>
         </ul>
       </div>
-
     </section>
 
     <section id="memories" class="wrap">
