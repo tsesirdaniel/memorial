@@ -3,114 +3,336 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>紀念 謝純昌 · 樣本頁</title>
+  <title>紀念 謝純昌 · 謝老師</title>
+  <meta name="description" content="紀念謝純昌老師。靜靜追思，溫柔記得。" />
   <style>
     :root {
-      --bg: #f7f4ef;
-      --ink: #2c2a26;
-      --muted: #6b6560;
-      --line: #ddd4c8;
-      --card: #fffdf9;
+      --paper: #f6f1e8;
+      --paper-deep: #ebe3d6;
+      --ink: #1f1c18;
+      --ink-soft: #4a453e;
+      --muted: #7a7268;
+      --line: #d9d0c2;
+      --accent: #8b3a2d;
+      --accent-soft: #c9a089;
+      --card: rgba(255, 252, 247, 0.92);
+      --shadow: 0 18px 48px rgba(31, 28, 24, 0.08);
+      --serif: "Noto Serif TC", "Source Han Serif TC", "Songti TC", "PingFang TC", "Hiragino Mincho ProN", serif;
+      --sans: "Noto Sans TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif;
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: "Noto Serif TC", "Songti TC", "PingFang TC", serif;
-      background: var(--bg);
+      background:
+        radial-gradient(1200px 600px at 50% -10%, #fffaf2 0%, transparent 60%),
+        linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
       color: var(--ink);
-      line-height: 1.7;
+      font-family: var(--serif);
+      line-height: 1.85;
     }
-    main {
-      max-width: 42rem;
-      margin: 0 auto;
-      padding: 2.5rem 1.25rem 4rem;
+    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+    a:hover { opacity: 0.85; }
+    .wrap { width: min(920px, calc(100% - 2rem)); margin: 0 auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(246, 241, 232, 0.82);
+      border-bottom: 1px solid rgba(217, 208, 194, 0.7);
     }
-    header {
+    .nav .inner {
+      display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem;
+      justify-content: center; padding: 0.85rem 0;
+      font-family: var(--sans); font-size: 0.86rem; letter-spacing: 0.12em;
+    }
+    .nav a { color: var(--ink-soft); text-decoration: none; }
+    .nav a:hover { color: var(--accent); }
+    .hero {
+      padding: 3.5rem 0 2.5rem;
       text-align: center;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 1.75rem;
-      margin-bottom: 2rem;
     }
     .portrait {
-      width: min(100%, 28rem);
-      margin: 0 auto 1.5rem;
-      border-radius: 14px;
+      width: min(100%, 26rem);
+      margin: 0 auto 1.75rem;
+      border-radius: 18px;
       overflow: hidden;
       border: 1px solid var(--line);
-      background: #efe8de;
-      box-shadow: 0 10px 28px rgba(44, 42, 38, 0.08);
+      box-shadow: var(--shadow);
+      background: #efe6da;
     }
-    .portrait img {
-      display: block;
-      width: 100%;
-      height: auto;
-      vertical-align: middle;
-    }
-    .eyebrow {
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-size: 0.75rem;
+    .portrait img { display: block; width: 100%; height: auto; }
+    .kicker {
+      margin: 0 0 0.85rem;
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.28em;
       color: var(--muted);
-      margin: 0 0 0.75rem;
     }
     h1 {
+      margin: 0;
       font-weight: 600;
-      font-size: clamp(1.8rem, 4vw, 2.4rem);
-      margin: 0 0 0.5rem;
+      font-size: clamp(2.1rem, 5vw, 3rem);
+      letter-spacing: 0.08em;
     }
     .aka {
-      margin: 0;
+      margin: 0.55rem 0 0;
+      color: var(--ink-soft);
+      font-size: 1.05rem;
+      letter-spacing: 0.14em;
+    }
+    .meta {
+      margin: 1.35rem auto 0;
+      max-width: 28rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--line);
       color: var(--muted);
-      font-size: 1rem;
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+    }
+    .meta span { display: inline-block; margin: 0 0.35rem; }
+    section {
+      padding: 2.4rem 0;
+    }
+    .section-title {
+      display: flex; align-items: baseline; gap: 0.85rem;
+      margin: 0 0 1.25rem;
+      padding-bottom: 0.7rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-title h2 {
+      margin: 0;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+    }
+    .section-title .en {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      text-transform: uppercase;
     }
     .card {
       background: var(--card);
       border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 1.4rem 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    .obituary p {
+      margin: 0 0 1rem;
+      color: var(--ink-soft);
+      font-size: 1.02rem;
+    }
+    .obituary p:last-child { margin-bottom: 0; }
+    .note {
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      border-left: 3px solid var(--accent-soft);
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      background: rgba(255,255,255,0.45);
+    }
+    .timeline { list-style: none; margin: 0; padding: 0; }
+    .timeline li {
+      display: grid;
+      grid-template-columns: 7.5rem 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px dashed var(--line);
+    }
+    .timeline li:last-child { border-bottom: 0; }
+    .timeline .year {
+      font-family: var(--sans);
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      font-size: 0.95rem;
+    }
+    .timeline .event { color: var(--ink-soft); }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+    @media (min-width: 720px) {
+      .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    .gallery figure {
+      margin: 0;
       border-radius: 12px;
-      padding: 1.25rem 1.35rem;
-      margin: 1.25rem 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #efe6da;
+      aspect-ratio: 4 / 3;
     }
-    h2 {
-      font-size: 1.05rem;
-      margin: 0 0 0.6rem;
+    .gallery img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.45s ease;
     }
-    p { margin: 0 0 0.85rem; }
-    ul { margin: 0; padding-left: 1.2rem; color: var(--muted); }
+    .gallery figure:hover img { transform: scale(1.03); }
+    .gallery figcaption {
+      display: none;
+    }
+    .memories .empty {
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 0.95rem;
+    }
+    .service-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    @media (min-width: 680px) {
+      .service-grid { grid-template-columns: 1.2fr 1fr; }
+    }
+    .label {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+    .value { color: var(--ink); font-size: 1.02rem; }
     footer {
-      margin-top: 2.5rem;
+      padding: 2.5rem 0 3.5rem;
       text-align: center;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+    }
+    footer .seal {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      width: 2.2rem; height: 2.2rem;
+      border: 1px solid var(--accent-soft);
+      border-radius: 50%;
+      line-height: 2.1rem;
+      color: var(--accent);
+      font-family: var(--serif);
+      font-size: 0.95rem;
     }
   </style>
 </head>
 <body>
+  <nav class="nav" aria-label="頁內導覽">
+    <div class="wrap inner">
+      <a href="#obituary">生平</a>
+      <a href="#timeline">年表</a>
+      <a href="#gallery">相冊</a>
+      <a href="#memories">留言</a>
+      <a href="#service">治喪</a>
+    </div>
+  </nav>
+
+  <header class="hero wrap">
+    <figure class="portrait">
+      <img src="portrait.jpg" alt="謝純昌老師於櫻花道回眸" width="1600" height="2133" />
+    </figure>
+    <p class="kicker">IN LOVING MEMORY</p>
+    <h1>謝純昌</h1>
+    <p class="aka">謝老師 · Chun-cheong</p>
+    <p class="meta">
+      <span>生卒年份待補</span>
+      <span>·</span>
+      <span>香港</span>
+    </p>
+  </header>
+
   <main>
-    <header>
-      <figure class="portrait">
-        <img src="portrait.jpg" alt="謝純昌於櫻花道回眸" width="1600" height="2133" />
-      </figure>
-      <p class="eyebrow">Sample memorial page</p>
-      <h1>紀念 謝純昌</h1>
-      <p class="aka">謝老師 · Chun-cheong</p>
-    </header>
-
-    <section class="card">
-      <h2>這是樣本頁</h2>
-      <p>此頁放在 GitHub 帳號 <strong>tsesirdaniel</strong>，方便之後改成正式紀念站或投影內容。生卒年份、訃聞與更多相片可再補上。</p>
+    <section id="obituary" class="wrap">
+      <div class="section-title">
+        <h2>生平</h2>
+        <span class="en">Obituary</span>
+      </div>
+      <div class="card obituary">
+        <p>謝純昌先生，人稱謝老師。一生執教，溫厚持躬，桃李遍及四方。課堂之外，亦以家人為念，溫言細語，常在身旁。</p>
+        <p>師者風範，不在宏言，而在日日之誠。學生感念其誨人不倦；親友記得其溫柔與沉穩。今日追思，願以安靜之心，記得他所留下的光。</p>
+        <p class="note">此為樣本草稿，僅作版式參考。正式訃聞、生卒年份與細節，請再告訴我後補上；我不會自行編造生平。</p>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>可稍後填入</h2>
-      <ul>
-        <li>生卒年份</li>
-        <li>追思會場地與時間</li>
-        <li>更多精選相片</li>
-        <li>親友留言</li>
-      </ul>
+    <section id="timeline" class="wrap">
+      <div class="section-title">
+        <h2>年表</h2>
+        <span class="en">Timeline</span>
+      </div>
+      <div class="card">
+        <ul class="timeline">
+          <li>
+            <div class="year">待補</div>
+            <div class="event">出生</div>
+          </li>
+          <li>
+            <div class="year">執教歲月</div>
+            <div class="event">誨人不倦，學生尊稱「謝老師」</div>
+          </li>
+          <li>
+            <div class="year">家人之愛</div>
+            <div class="event">與家人同行：神社參道、旅途、日常溫暖時光</div>
+          </li>
+          <li>
+            <div class="year">待補</div>
+            <div class="event">安息 · 追思會詳見治喪資訊</div>
+          </li>
+        </ul>
+      </div>
     </section>
 
-    <footer>靜靜紀念 · 樣本草稿</footer>
+    <section id="gallery" class="wrap">
+      <div class="section-title">
+        <h2>相冊</h2>
+        <span class="en">Gallery</span>
+      </div>
+      <div class="gallery">
+        <figure><img src="gallery/shrine.jpg" alt="神社參道牽手" loading="lazy" /></figure>
+        <figure><img src="gallery/family.jpg" alt="一家四口" loading="lazy" /></figure>
+        <figure><img src="gallery/playground.jpg" alt="遊樂場" loading="lazy" /></figure>
+        <figure><img src="gallery/newborn.jpg" alt="抱著初生嬰兒" loading="lazy" /></figure>
+        <figure><img src="gallery/snow.jpg" alt="雪中" loading="lazy" /></figure>
+        <figure><img src="gallery/kimono.jpg" alt="和服店前" loading="lazy" /></figure>
+        <figure><img src="gallery/beach.jpg" alt="沙灘" loading="lazy" /></figure>
+        <figure><img src="gallery/teacher-board.jpg" alt="學生心意板" loading="lazy" /></figure>
+      </div>
+    </section>
+
+    <section id="memories" class="wrap">
+      <div class="section-title">
+        <h2>留言牆</h2>
+        <span class="en">Memory wall</span>
+      </div>
+      <div class="card memories">
+        <p class="empty">此處預留給親友追思留言。樣本頁暫未接表單；若需要，我可以再加「留言」功能或連到外部表格。</p>
+      </div>
+    </section>
+
+    <section id="service" class="wrap">
+      <div class="section-title">
+        <h2>治喪資訊</h2>
+        <span class="en">Service</span>
+      </div>
+      <div class="service-grid">
+        <div class="card">
+          <span class="label">場地</span>
+          <div class="value">沙田賽馬會善寧之家</div>
+          <p style="margin:0.85rem 0 0;color:var(--muted);font-family:var(--sans);font-size:0.9rem;">日期與時間待確認後補上。</p>
+        </div>
+        <div class="card">
+          <span class="label">禮儀</span>
+          <div class="value">佛道</div>
+          <p style="margin:0.85rem 0 0;color:var(--muted);font-family:var(--sans);font-size:0.9rem;">破地獄等細節，請先向善寧之家查詢確認。</p>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <div class="seal">念</div>
+    <div>靜靜紀念 · 謝純昌老師</div>
+  </footer>
 </body>
 </html>
