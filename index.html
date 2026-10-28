@@ -109,33 +109,57 @@
       font-weight: 400;
     }
     .motto {
-      white-space: pre-line;
+      display: grid;
+      place-items: center;
       margin: 0 auto 1.35rem;
-      max-width: 20rem;
-      padding: 0 0.5rem 1.05rem;
+      max-width: 28rem;
+      min-height: 2.6em;
+      padding: 0 0.5rem 1.15rem;
       border-bottom: 1px solid var(--line);
       color: var(--accent);
-      font-size: clamp(1.12rem, 2.4vw, 1.38rem);
+      font-size: clamp(1.45rem, 3.6vw, 1.95rem);
       letter-spacing: 0.28em;
-      text-indent: 0.28em;
       font-weight: 500;
-      line-height: 1.95;
-      opacity: 0;
-      transform: translateY(0.55rem);
-      transition: opacity 1.8s ease, transform 1.8s ease, border-color 1.8s ease;
-      border-bottom-color: transparent;
+      line-height: 1.7;
     }
-    .motto.is-visible {
+    .motto-line {
+      grid-area: 1 / 1;
+      text-align: center;
+      text-indent: 0.28em;
+      transition: opacity 1.5s ease, transform 1.5s ease;
+    }
+    .motto-line--a {
       opacity: 1;
       transform: translateY(0);
-      border-bottom-color: var(--line);
+    }
+    .motto-line--b {
+      opacity: 0;
+      transform: translateY(0.45rem);
+      pointer-events: none;
+    }
+    .motto.is-swapped .motto-line--a {
+      opacity: 0;
+      transform: translateY(-0.45rem);
+      pointer-events: none;
+    }
+    .motto.is-swapped .motto-line--b {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
     @media (prefers-reduced-motion: reduce) {
       .motto {
-        opacity: 1;
-        transform: none;
+        display: block;
+        white-space: pre-line;
+        text-align: center;
+        text-indent: 0.28em;
+      }
+      .motto-line {
+        display: block;
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto !important;
         transition: none;
-        border-bottom-color: var(--line);
       }
     }
 
@@ -551,8 +575,10 @@
   </nav>
 
   <header class="hero wrap">
-    <p class="motto">人生到處知何似
-應似飛鴻踏雪泥</p>
+    <p class="motto" aria-label="人生到處知何似 應似飛鴻踏雪泥">
+      <span class="motto-line motto-line--a">人生到處知何似</span>
+      <span class="motto-line motto-line--b">應似飛鴻踏雪泥</span>
+    </p>
     <figure class="portrait">
       <img src="portrait.jpg" alt="謝純昌老師於櫻花道回眸" width="1600" height="2133" />
     </figure>
@@ -815,19 +841,18 @@
       var motto = document.querySelector(".motto");
       if (!motto) return;
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        motto.classList.add("is-visible");
         return;
       }
-      var revealed = false;
-      function reveal() {
-        if (revealed) return;
+      var swapped = false;
+      function onScroll() {
+        if (swapped) return;
         if (window.scrollY < 36) return;
-        revealed = true;
-        motto.classList.add("is-visible");
-        window.removeEventListener("scroll", reveal);
+        swapped = true;
+        motto.classList.add("is-swapped");
+        window.removeEventListener("scroll", onScroll);
       }
-      window.addEventListener("scroll", reveal, { passive: true });
-      reveal();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
     })();
   </script>
 </body>
