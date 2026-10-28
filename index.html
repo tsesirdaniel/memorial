@@ -210,7 +210,7 @@
       background: linear-gradient(180deg, transparent, var(--line) 8%, var(--line) 92%, transparent);
     }
     @media (min-width: 720px) {
-      .timeline::before { left: 8.35rem; }
+      .timeline::before { left: 9.35rem; }
     }
     .timeline > li {
       position: relative;
@@ -222,7 +222,7 @@
     .timeline > li:last-child { border-bottom: 0; }
     @media (min-width: 720px) {
       .timeline > li {
-        grid-template-columns: 7.2rem 1fr;
+        grid-template-columns: 8.2rem 1fr;
         padding-left: 0;
       }
     }
@@ -239,15 +239,17 @@
       box-shadow: 0 0 0 4px rgba(246, 241, 232, 0.9);
     }
     @media (min-width: 720px) {
-      .timeline > li::before { left: 8.15rem; top: 1.85rem; }
+      .timeline > li::before { left: 9.15rem; top: 1.85rem; }
     }
     .timeline .year {
       font-family: var(--sans);
       color: var(--accent);
-      letter-spacing: 0.12em;
-      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      font-size: 0.88rem;
       font-weight: 600;
       padding-top: 0.15rem;
+      line-height: 1.35;
+      word-break: keep-all;
     }
     .timeline .event { color: var(--ink-soft); }
     .timeline-photo {
@@ -446,236 +448,186 @@
         <span class="en">Timeline</span>
       </div>
       
-      <p class="timeline-intro">依歲月先後排列。年份優先取自相片上可見文字，其次 EXIF DateTimeOriginal；兩者皆無則標「年份待補」，不臆造年份。說明盡量貼近畫面所見（含牌匾／店名等原文）。</p>
+      <p class="timeline-intro">依歲月先後排列。左側為時期或年份；說明由家人修訂。</p>
       <div class="card" style="padding: 0.6rem 1.25rem 0.4rem;">
         <ul class="timeline">
           <li>
-            <div class="year">年份待補</div>
+            <div class="year">童年時光</div>
             <div class="event">
-              <div>早年黑白合影</div>
+              <div>兄父</div>
               <figure class="timeline-photo">
-                <img src="timeline/01-early-bw.jpg" alt="早年黑白合影" loading="lazy" width="1388" height="1350" />
-                <figcaption>早年時光 · 與兩孩同行於郊野</figcaption>
+                <img src="timeline/01-early-bw.jpg" alt="兄父" loading="lazy" width="1388" height="1350" />
+                <figcaption>兄父</figcaption>
               </figure>
             </div>
           </li>
           <li>
-            <div class="year">年份待補</div>
+            <div class="year">青春歲月</div>
             <div class="event">
-              <div>海邊持結他</div>
+              <div>瀟灑倜儻</div>
               <figure class="timeline-photo">
-                <img src="timeline/02-youth-guitar.jpg" alt="海邊持結他" loading="lazy" width="960" height="1400" />
-                <figcaption>青年時期 · 海邊草地持結他</figcaption>
+                <img src="timeline/02-youth-guitar.jpg" alt="瀟灑倜儻" loading="lazy" width="960" height="1400" />
+                <figcaption>瀟灑倜儻</figcaption>
               </figure>
             </div>
           </li>
           <li>
-            <div class="year">年份待補</div>
+            <div class="year">立志於學</div>
             <div class="event">
-              <div>瀑布前</div>
+              <div>港大畢業</div>
               <figure class="timeline-photo">
-                <img src="timeline/03-youth-waterfall.jpg" alt="瀑布前" loading="lazy" width="1400" height="933" />
-                <figcaption>青年外遊 · 瀑布前</figcaption>
+                <img src="timeline/04-graduation.jpg" alt="港大畢業" loading="lazy" width="971" height="1400" />
+                <figcaption>港大畢業</figcaption>
               </figure>
             </div>
           </li>
           <li>
-            <div class="year">年份待補</div>
+            <div class="year">走萬里路</div>
             <div class="event">
-              <div>畢業禮留影</div>
+              <div>遊歷中華</div>
               <figure class="timeline-photo">
-                <img src="timeline/04-graduation.jpg" alt="畢業禮留影" loading="lazy" width="971" height="1400" />
-                <figcaption>學成之際 · 畢業袍帽留影</figcaption>
+                <img src="timeline/03-youth-waterfall.jpg" alt="遊歷中華" loading="lazy" width="1400" height="933" />
+                <figcaption>遊歷中華</figcaption>
               </figure>
             </div>
           </li>
           <li>
-            <div class="year">年份待補</div>
+            <div class="year">三十而立</div>
             <div class="event">
               <div>新婚留影</div>
               <figure class="timeline-photo">
                 <img src="timeline/05-wedding.jpg" alt="新婚留影" loading="lazy" width="1001" height="1400" />
-                <figcaption>成家 · 新婚留影</figcaption>
+                <figcaption>新婚留影</figcaption>
               </figure>
             </div>
           </li>
           <li>
-            <div class="year">年份待補</div>
+            <div class="year">修身齊家</div>
             <div class="event">
-              <div>初抱稚子</div>
+              <div>為人父初抱稚子</div>
               <figure class="timeline-photo">
-                <img src="timeline/06-father-infant.jpg" alt="初抱稚子" loading="lazy" width="1400" height="970" />
-                <figcaption>為人父 · 初抱稚子</figcaption>
+                <img src="timeline/06-father-infant.jpg" alt="為人父初抱稚子" loading="lazy" width="1400" height="970" />
+                <figcaption>為人父初抱稚子</figcaption>
               </figure>
             </div>
           </li>
           <li>
-            <div class="year">年份待補</div>
+            <div class="year">誨人不倦</div>
             <div class="event">
-              <div>校園小豬頸枕</div>
+              <div>執教歲月</div>
               <figure class="timeline-photo">
-                <img src="timeline/07-teacher-pig-pillow.jpg" alt="校園小豬頸枕" loading="lazy" width="453" height="604" />
-                <figcaption>執教歲月 · 校園一角，手抱小豬頸枕</figcaption>
+                <img src="timeline/07-teacher-pig-pillow.jpg" alt="執教歲月" loading="lazy" width="453" height="604" />
+                <figcaption>執教歲月</figcaption>
               </figure>
             </div>
           </li>
           <li>
-            <div class="year">2007</div>
+            <div class="year">？</div>
             <div class="event">
-              <div>學生心意板</div>
+              <div>桃李滿門</div>
               <figure class="timeline-photo">
-                <img src="timeline/08-teacher-tribute.jpg" alt="學生心意板" loading="lazy" width="1400" height="1050" />
-                <figcaption>謝老師 · 學生心意板「我愛純昌」</figcaption>
+                <img src="timeline/08-teacher-tribute.jpg" alt="桃李滿門" loading="lazy" width="1400" height="1050" />
+                <figcaption>桃李滿門</figcaption>
               </figure>
             </div>
           </li>
           <li>
-            <div class="year">年份待補</div>
+            <div class="year">耳順之年</div>
             <div class="event">
-              <div>抱著孩子</div>
+              <div>弄孫為樂</div>
               <figure class="timeline-photo">
-                <img src="timeline/09-family-toddler.jpg" alt="抱著孩子" loading="lazy" width="1050" height="1400" />
-                <figcaption>家庭時光 · 抱著戴口罩的孩子</figcaption>
+                <img src="timeline/09-family-toddler.jpg" alt="弄孫為樂" loading="lazy" width="1050" height="1400" />
+                <figcaption>弄孫為樂</figcaption>
               </figure>
             </div>
           </li>
           <li>
-            <div class="year">2023</div>
+            <div class="year">環遊世界</div>
             <div class="event">
               <div>皇后鎮水畔</div>
               <figure class="timeline-photo">
                 <img src="timeline/10-travel-nz-couple.jpg" alt="皇后鎮水畔" loading="lazy" width="1400" height="1050" />
-                <figcaption>外遊 · 紐西蘭皇后鎮水畔（背景可見 Jet Boating）</figcaption>
+                <figcaption>皇后鎮水畔</figcaption>
               </figure>
             </div>
           </li>
           <li>
-            <div class="year">2023</div>
+            <div class="year">從心所欲</div>
             <div class="event">
-              <div>皇后鎮噴射船</div>
+              <div>家庭之樂</div>
               <figure class="timeline-photo">
-                <img src="timeline/11-travel-nz-jetboat.jpg" alt="皇后鎮噴射船" loading="lazy" width="1400" height="1050" />
-                <figcaption>外遊 · 皇后鎮噴射船 · KJet Queenstown</figcaption>
+                <img src="timeline/12-family-sandcastle.jpg" alt="家庭之樂" loading="lazy" width="1400" height="1050" />
+                <figcaption>家庭之樂</figcaption>
               </figure>
             </div>
           </li>
           <li>
-            <div class="year">年份待補</div>
+            <div class="year">患疾復發</div>
             <div class="event">
-              <div>堆沙堡</div>
+              <div>積極抗癌</div>
               <figure class="timeline-photo">
-                <img src="timeline/12-family-sandcastle.jpg" alt="堆沙堡" loading="lazy" width="1400" height="1050" />
-                <figcaption>家庭時光 · 與孩子蹲地堆沙堡</figcaption>
+                <img src="timeline/13-leisure-rooftop.jpg" alt="積極抗癌" loading="lazy" width="1050" height="1400" />
+                <figcaption>積極抗癌</figcaption>
               </figure>
             </div>
           </li>
           <li>
-            <div class="year">2024</div>
-            <div class="event">
-              <div>天台習拳</div>
-              <figure class="timeline-photo">
-                <img src="timeline/13-leisure-rooftop.jpg" alt="天台習拳" loading="lazy" width="1050" height="1400" />
-                <figcaption>閒暇 · 天台習拳，精神奕奕</figcaption>
-              </figure>
-            </div>
-          </li>
-          <li>
-            <div class="year">2024</div>
-            <div class="event">
-              <div>嚴島神社</div>
-              <figure class="timeline-photo">
-                <img src="timeline/14-travel-miyajima.jpg" alt="嚴島神社" loading="lazy" width="1050" height="1400" />
-                <figcaption>旅日 · 嚴島神社大鳥居前</figcaption>
-              </figure>
-            </div>
-          </li>
-          <li>
-            <div class="year">年份待補</div>
-            <div class="event">
-              <div>雪中歡聚</div>
-              <figure class="timeline-photo">
-                <img src="timeline/15-travel-snow.jpg" alt="雪中歡聚" loading="lazy" width="1400" height="933" />
-                <figcaption>外遊 · 雪地與親友歡聚</figcaption>
-              </figure>
-            </div>
-          </li>
-          <li>
-            <div class="year">年份待補</div>
+            <div class="year">退休時光</div>
             <div class="event">
               <div>雪梨歌劇院前</div>
               <figure class="timeline-photo">
                 <img src="timeline/16-sydney-opera.jpg" alt="雪梨歌劇院前" loading="lazy" width="1400" height="933" />
-                <figcaption>澳洲 · 雪梨歌劇院前</figcaption>
+                <figcaption>雪梨歌劇院前</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">2024</div>
+            <div class="event">
+              <div>雪地歡聚</div>
+              <figure class="timeline-photo">
+                <img src="timeline/15-travel-snow.jpg" alt="雪地歡聚" loading="lazy" width="1400" height="933" />
+                <figcaption>雪地歡聚</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">2024</div>
+            <div class="event">
+              <div>川越和服留影</div>
+              <figure class="timeline-photo">
+                <img src="timeline/17-travel-kimono.jpg" alt="川越和服留影" loading="lazy" width="933" height="1400" />
+                <figcaption>川越和服留影</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">2024</div>
+            <div class="event">
+              <div>川越和服留影</div>
+              <figure class="timeline-photo">
+                <img src="timeline/18-travel-ema.jpg" alt="川越和服留影" loading="lazy" width="933" height="1400" />
+                <figcaption>川越和服留影</figcaption>
               </figure>
             </div>
           </li>
           <li>
             <div class="year">2025</div>
             <div class="event">
-              <div>川越玉屋 · 和服</div>
+              <div>海闊天空</div>
               <figure class="timeline-photo">
-                <img src="timeline/17-travel-kimono.jpg" alt="川越玉屋 · 和服" loading="lazy" width="933" height="1400" />
-                <figcaption>旅日 · 川越「TAMAYA KAWAGOE」店前和服留影（黑板：HAPPY VALENTINE'S DAY · 2月14日）</figcaption>
+                <img src="timeline/21-travel-sky-mirror.jpg" alt="海闊天空" loading="lazy" width="1400" height="1050" />
+                <figcaption>海闊天空</figcaption>
               </figure>
             </div>
           </li>
           <li>
             <div class="year">2025</div>
             <div class="event">
-              <div>繪馬廊下牽手</div>
+              <div>石灘奔跑</div>
               <figure class="timeline-photo">
-                <img src="timeline/18-travel-ema.jpg" alt="繪馬廊下牽手" loading="lazy" width="933" height="1400" />
-                <figcaption>旅日 · 繪馬廊下，牽手同行</figcaption>
-              </figure>
-            </div>
-          </li>
-          <li>
-            <div class="year">2025</div>
-            <div class="event">
-              <div>燈塔與貓咪</div>
-              <figure class="timeline-photo">
-                <img src="timeline/19-travel-lighthouse.jpg" alt="燈塔與貓咪" loading="lazy" width="1050" height="1400" />
-                <figcaption>旅途小憩 · 燈塔下與貓咪</figcaption>
-              </figure>
-            </div>
-          </li>
-          <li>
-            <div class="year">2025</div>
-            <div class="event">
-              <div>「謝教練」牌匾</div>
-              <figure class="timeline-photo">
-                <img src="timeline/20-coach-sign.jpg" alt="「謝教練」牌匾" loading="lazy" width="1050" height="1400" />
-                <figcaption>「謝教練」牌匾前（攤位標 G17）</figcaption>
-              </figure>
-            </div>
-          </li>
-          <li>
-            <div class="year">2025</div>
-            <div class="event">
-              <div>鏡像天空</div>
-              <figure class="timeline-photo">
-                <img src="timeline/21-travel-sky-mirror.jpg" alt="鏡像天空" loading="lazy" width="1400" height="1050" />
-                <figcaption>旅途 · 鏡像天空留影</figcaption>
-              </figure>
-            </div>
-          </li>
-          <li>
-            <div class="year">2025</div>
-            <div class="event">
-              <div>礫石灘奔跑</div>
-              <figure class="timeline-photo">
-                <img src="timeline/22-family-beach-run.jpg" alt="礫石灘奔跑" loading="lazy" width="1050" height="1400" />
-                <figcaption>家庭時光 · 礫石灘上奔跑同行</figcaption>
-              </figure>
-            </div>
-          </li>
-          <li>
-            <div class="year">年份待補</div>
-            <div class="event">
-              <div>喜抱幼孫</div>
-              <figure class="timeline-photo">
-                <img src="timeline/23-family-newborn.jpg" alt="喜抱幼孫" loading="lazy" width="1050" height="1400" />
-                <figcaption>天倫 · 與伴侶喜抱新生幼孫</figcaption>
+                <img src="timeline/22-family-beach-run.jpg" alt="石灘奔跑" loading="lazy" width="1050" height="1400" />
+                <figcaption>石灘奔跑</figcaption>
               </figure>
             </div>
           </li>
@@ -685,7 +637,17 @@
               <div>沙丘滑沙</div>
               <figure class="timeline-photo">
                 <img src="timeline/24-travel-sandboard.jpg" alt="沙丘滑沙" loading="lazy" width="933" height="1400" />
-                <figcaption>外遊 · 沙丘滑沙</figcaption>
+                <figcaption>沙丘滑沙</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">2026</div>
+            <div class="event">
+              <div>喜抱新生男孫</div>
+              <figure class="timeline-photo">
+                <img src="timeline/23-family-newborn.jpg" alt="喜抱新生男孫" loading="lazy" width="1050" height="1400" />
+                <figcaption>喜抱新生男孫</figcaption>
               </figure>
             </div>
           </li>
