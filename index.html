@@ -287,32 +287,78 @@
       background: rgba(255, 252, 247, 0.95);
       border-top: 1px solid var(--line);
     }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.9rem;
-    }
-    @media (min-width: 720px) {
-      .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    }
-    .gallery figure {
-      margin: 0;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: #efe6da;
-      aspect-ratio: 4 / 3;
-    }
-    .gallery img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      transition: transform 0.45s ease;
-    }
-    .gallery figure:hover img { transform: scale(1.03); }
-    .memories .empty {
+    .memories-intro {
+      margin: -0.4rem 0 1.1rem;
       color: var(--muted);
       font-family: var(--sans);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+    }
+    .memory-form {
+      display: grid;
+      gap: 0.85rem;
+    }
+    .memory-form label {
+      display: grid;
+      gap: 0.35rem;
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+    .memory-form input,
+    .memory-form textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fffdf9;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      padding: 0.7rem 0.85rem;
+      outline: none;
+    }
+    .memory-form textarea {
+      min-height: 8rem;
+      resize: vertical;
+      line-height: 1.7;
+    }
+    .memory-form input:focus,
+    .memory-form textarea:focus {
+      border-color: var(--accent-soft);
+      box-shadow: 0 0 0 3px rgba(166, 124, 82, 0.12);
+    }
+    .memory-form .row {
+      display: grid;
+      gap: 0.85rem;
+    }
+    @media (min-width: 640px) {
+      .memory-form .row { grid-template-columns: 1fr 1fr; }
+    }
+    .memory-form button {
+      justify-self: start;
+      margin-top: 0.25rem;
+      border: 0;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fffaf3;
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      letter-spacing: 0.16em;
+      padding: 0.72rem 1.35rem;
+      cursor: pointer;
+    }
+    .memory-form button:hover { filter: brightness(1.05); }
+    .memory-note {
+      margin: 0.85rem 0 0;
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      line-height: 1.65;
     }
     .service-grid {
       display: grid;
@@ -385,7 +431,6 @@
       <a href="#obituary">訃文</a>
       <a href="#service">治喪</a>
       <a href="#timeline">年表</a>
-      <a href="#gallery">相冊</a>
       <a href="#memories">留言</a>
     </div>
   </nav>
@@ -400,11 +445,7 @@
     <p class="motto">人生到處知何似，
 應似飛鴻踏雪泥。</p>
     
-    <p class="meta">
-      <span>一九五九</span>
-      <span class="meta-dash">—</span>
-      <span>二〇二六</span>
-    </p>
+
   </header>
 
   <main>
@@ -453,7 +494,6 @@
         <span class="en">Timeline</span>
       </div>
       
-      <p class="timeline-intro">依歲月先後排列。左側為時期或年份；說明由家人修訂。</p>
       <div class="card" style="padding: 0.6rem 1.25rem 0.4rem;">
         <ul class="timeline">
           <li>
@@ -550,7 +590,7 @@
             <div class="year">從心所欲</div>
             <div class="event">
               <figure class="timeline-photo">
-                <img src="timeline/12-family-sandcastle.jpg" alt="家庭之樂" loading="lazy" width="1400" height="1050" />
+                <img src="timeline/12-family-sandcastle.jpg" alt="家庭之樂" loading="lazy" width="1600" height="1200" />
                 <figcaption>家庭之樂</figcaption>
               </figure>
             </div>
@@ -645,40 +685,39 @@
 
     </section>
 
-    <section id="gallery" class="wrap">
-      <div class="section-title">
-        <h2>相冊</h2>
-        <span class="en">Gallery</span>
-      </div>
-      <div class="gallery">
-        <figure><img src="gallery/shrine.jpg" alt="神社參道牽手" loading="lazy" /></figure>
-        <figure><img src="gallery/family.jpg" alt="一家四口" loading="lazy" /></figure>
-        <figure><img src="gallery/playground.jpg" alt="遊樂場" loading="lazy" /></figure>
-        <figure><img src="gallery/newborn.jpg" alt="抱著初生嬰兒" loading="lazy" /></figure>
-        <figure><img src="gallery/snow.jpg" alt="雪中" loading="lazy" /></figure>
-        <figure><img src="gallery/kimono.jpg" alt="和服店前" loading="lazy" /></figure>
-        <figure><img src="gallery/beach.jpg" alt="沙灘" loading="lazy" /></figure>
-        <figure><img src="gallery/teacher-board.jpg" alt="學生心意板" loading="lazy" /></figure>
-      </div>
-    </section>
-
     <section id="memories" class="wrap">
       <div class="section-title">
         <h2>留言牆</h2>
         <span class="en">Memory wall</span>
       </div>
+      <p class="memories-intro">歡迎親友留下對謝老師的思念與祝福。留言將寄至家人信箱，由家人妥為珍存。</p>
       <div class="card memories">
-        <p class="empty">此處預留給親友追思留言。樣本頁暫未接表單；若需要，我可以再加留言功能。</p>
+        <form class="memory-form" action="https://formsubmit.co/tsefamily18hr@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="追思留言 · 謝純昌老師" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="box" />
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <div class="row">
+            <label>姓名
+              <input type="text" name="姓名" required maxlength="80" placeholder="您的姓名" />
+            </label>
+            <label>關係（選填）
+              <input type="text" name="關係" maxlength="80" placeholder="如：學生、親友、同事" />
+            </label>
+          </div>
+          <label>留言
+            <textarea name="留言" required maxlength="2000" placeholder="想對謝老師說的話……"></textarea>
+          </label>
+          <button type="submit">送出留言</button>
+        </form>
+        <p class="memory-note">送出後將以電郵通知家人。請勿留下敏感個人資料。</p>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="seal">念</div>
-    <p class="motto-foot">人生到處知何似，
-應似飛鴻踏雪泥。</p>
-    <div>靜靜紀念 · 謝純昌老師</div>
-      <p class="closing-line">父愛如山，巍峨無言。</p>
+    <p class="closing-line">父愛如山，巍峨無言。</p>
   </footer>
 </body>
 </html>
