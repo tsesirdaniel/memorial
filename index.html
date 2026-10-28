@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>紀念 謝純昌 · 謝老師</title>
-  <meta name="description" content="紀念謝純昌老師。靜靜追思，溫柔記得。" />
+  <meta name="description" content="紀念謝純昌老師。靜靜追思，溫柔記得。人生到處知何似，應似飛鴻踏雪泥。" />
   <style>
     :root {
       --paper: #f6f1e8;
@@ -34,6 +34,7 @@
     a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
     a:hover { opacity: 0.85; }
     .wrap { width: min(920px, calc(100% - 2rem)); margin: 0 auto; }
+    .wrap-wide { width: min(1040px, calc(100% - 2rem)); margin: 0 auto; }
     .nav {
       position: sticky; top: 0; z-index: 20;
       backdrop-filter: blur(10px);
@@ -87,11 +88,26 @@
       font-size: 1.05rem;
       letter-spacing: 0.14em;
     }
-    .meta {
+    .motto {
       margin: 1.35rem auto 0;
-      max-width: 28rem;
-      padding-top: 1.1rem;
+      max-width: 22rem;
+      padding: 0.95rem 1rem 0;
       border-top: 1px solid var(--line);
+      color: var(--accent);
+      font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+      letter-spacing: 0.42em;
+      font-weight: 500;
+    }
+    .motto-note {
+      margin: 0.45rem 0 0;
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+    .meta {
+      margin: 1.1rem auto 0;
+      max-width: 28rem;
       color: var(--muted);
       font-family: var(--sans);
       font-size: 0.92rem;
@@ -167,22 +183,98 @@
       letter-spacing: 0.08em;
       font-size: 0.95rem;
     }
-    .timeline { list-style: none; margin: 0; padding: 0; }
-    .timeline li {
+    /* Photo timeline */
+    .timeline-intro {
+      margin: -0.4rem 0 1.35rem;
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+    }
+    .timeline {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0.55rem;
+      top: 0.4rem;
+      bottom: 0.4rem;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, var(--line) 8%, var(--line) 92%, transparent);
+    }
+    @media (min-width: 720px) {
+      .timeline::before { left: 8.35rem; }
+    }
+    .timeline > li {
+      position: relative;
       display: grid;
-      grid-template-columns: 7.5rem 1fr;
-      gap: 1rem;
-      padding: 1rem 0;
+      gap: 0.85rem 1.25rem;
+      padding: 1.35rem 0 1.55rem 1.85rem;
       border-bottom: 1px dashed var(--line);
     }
-    .timeline li:last-child { border-bottom: 0; }
+    .timeline > li:last-child { border-bottom: 0; }
+    @media (min-width: 720px) {
+      .timeline > li {
+        grid-template-columns: 7.2rem 1fr;
+        padding-left: 0;
+      }
+    }
+    .timeline > li::before {
+      content: "";
+      position: absolute;
+      left: 0.35rem;
+      top: 1.7rem;
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 0 4px rgba(246, 241, 232, 0.9);
+    }
+    @media (min-width: 720px) {
+      .timeline > li::before { left: 8.15rem; top: 1.85rem; }
+    }
     .timeline .year {
       font-family: var(--sans);
       color: var(--accent);
-      letter-spacing: 0.08em;
-      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding-top: 0.15rem;
     }
     .timeline .event { color: var(--ink-soft); }
+    .timeline-photo {
+      margin: 0.65rem 0 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #efe6da;
+      box-shadow: 0 10px 28px rgba(31, 28, 24, 0.06);
+      max-width: min(100%, 36rem);
+    }
+    @media (min-width: 900px) {
+      .timeline-photo { max-width: min(100%, 42rem); }
+    }
+    .timeline-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+      vertical-align: middle;
+    }
+    .timeline-photo figcaption {
+      margin: 0;
+      padding: 0.7rem 0.95rem 0.85rem;
+      font-family: var(--sans);
+      font-size: 0.86rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      background: rgba(255, 252, 247, 0.95);
+      border-top: 1px solid var(--line);
+    }
     .gallery {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -245,13 +337,20 @@
       font-family: var(--serif);
       font-size: 0.95rem;
     }
+    footer .motto-foot {
+      margin: 0 0 0.65rem;
+      font-family: var(--serif);
+      color: var(--accent);
+      letter-spacing: 0.35em;
+      font-size: 1rem;
+    }
   </style>
 </head>
 <body>
   <nav class="nav" aria-label="頁內導覽">
     <div class="wrap inner">
-      <a href="#service">治喪</a>
       <a href="#obituary">訃文</a>
+      <a href="#service">治喪</a>
       <a href="#timeline">年表</a>
       <a href="#gallery">相冊</a>
       <a href="#memories">留言</a>
@@ -265,6 +364,8 @@
     <p class="kicker">IN LOVING MEMORY</p>
     <h1>謝純昌</h1>
     <p class="aka">謝老師 · Daniel Tse</p>
+    <p class="motto">人生到處知何似，應似飛鴻踏雪泥。</p>
+    <p class="motto-note">先父 WhatsApp 狀態 · 蘇軾典故</p>
     <p class="meta">
       <span>生卒年份待補</span>
       <span>·</span>
@@ -273,6 +374,24 @@
   </header>
 
   <main>
+    <section id="obituary" class="wrap">
+      <div class="section-title">
+        <h2>訃文</h2>
+        <span class="en">Obituary</span>
+      </div>
+      <div class="card obit-formal">
+        <h3 class="obit-head">訃　聞</h3>
+        <div class="obit-body">
+          <p>不孝男泣告：先父謝公諱純昌府君，平生為人溫厚，持躬謹約。執教多年，誨人不倦，學生尊稱「謝老師」；於家則為慈父，言傳身教，愛深而靜。</p>
+          <p>兒時承膝下之恩，長大後仍常得父親牽掛與叮嚀。父子同行於神社參道、旅途與日常之間，點滴皆成終身之念。今父親遽歸道山，椎心泣血，罔極之恩未報萬一，哀痛曷極。</p>
+          <p>茲定於（設靈日期待補）在沙田賽馬會善寧之家設靈，並以佛道儀式治喪；（出殯日期待補）出殯。哀此訃聞。</p>
+          <p>生卒年份、準確時辰，以及同署家人稱謂，待核實後補入。本稿為兒子視角之樣本草稿，僅供文氣與版式參考。</p>
+        </div>
+        <div class="obit-sign">不孝男　泣血稽顙</div>
+        <p class="note">樣本訃聞：未寫入未核實的生卒與日期。你若給出生年、卒年、設靈／出殯時間與是否聯署其他家人，我再改成定稿。</p>
+      </div>
+    </section>
+
     <section id="service" class="wrap">
       <div class="section-title">
         <h2>治喪資訊</h2>
@@ -292,46 +411,219 @@
       </div>
     </section>
 
-    <section id="obituary" class="wrap">
-      <div class="section-title">
-        <h2>訃文</h2>
-        <span class="en">Obituary</span>
-      </div>
-      <div class="card obit-formal">
-        <h3 class="obit-head">訃　聞</h3>
-        <div class="obit-body">
-          <p>不孝男泣告：先父謝公諱純昌府君，平生為人溫厚，持躬謹約。執教多年，誨人不倦，學生尊稱「謝老師」；於家則為慈父，言傳身教，愛深而靜。</p>
-          <p>兒時承膝下之恩，長大後仍常得父親牽掛與叮嚀。父子同行於神社參道、旅途與日常之間，點滴皆成終身之念。今父親遽歸道山，椎心泣血，罔極之恩未報萬一，哀痛曷極。</p>
-          <p>茲定於（設靈日期待補）在沙田賽馬會善寧之家設靈，並以佛道儀式治喪；（出殯日期待補）出殯。哀此訃聞。</p>
-          <p>生卒年份、準確時辰，以及同署家人稱謂，待核實後補入。本稿為兒子視角之樣本草稿，僅供文氣與版式參考。</p>
-        </div>
-        <div class="obit-sign">不孝男　泣血稽顙</div>
-        <p class="note">樣本訃聞：未寫入未核實的生卒與日期。你若給出生年、卒年、設靈／出殯時間與是否聯署其他家人，我再改成定稿。</p>
-      </div>
-    </section>
 
-    <section id="timeline" class="wrap">
+
+    <section id="timeline" class="wrap-wide">
       <div class="section-title">
         <h2>年表</h2>
         <span class="en">Timeline</span>
       </div>
-      <div class="card">
+      <p class="timeline-intro">依歲月先後排列的影像年表。時代標籤與說明多為樣本推測；有 EXIF 日期者已註於檔案紀錄，未核實的生卒年份故意留空。</p>
+      <div class="card" style="padding: 0.6rem 1.25rem 0.4rem;">
         <ul class="timeline">
           <li>
-            <div class="year">待補</div>
-            <div class="event">出生</div>
+            <div class="year">早年時光</div>
+            <div class="event">
+              <div>父子同行的早年留影</div>
+              <figure class="timeline-photo">
+                <img src="timeline/01-early-bw.jpg" alt="早年黑白合影" loading="lazy" width="1388" height="1350" />
+                <figcaption>早年時光 · 父子合影（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">青年時期</div>
+            <div class="event">
+              <div>海邊持結他</div>
+              <figure class="timeline-photo">
+                <img src="timeline/02-youth-guitar.jpg" alt="青年時期海邊持結他" loading="lazy" width="960" height="1400" />
+                <figcaption>青年時期 · 海邊持結他（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">學成之際</div>
+            <div class="event">
+              <div>畢業禮留影</div>
+              <figure class="timeline-photo">
+                <img src="timeline/03-graduation.jpg" alt="畢業禮" loading="lazy" width="971" height="1400" />
+                <figcaption>畢業禮 · 學成之際（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">為人父</div>
+            <div class="event">
+              <div>喜抱新生</div>
+              <figure class="timeline-photo">
+                <img src="timeline/04-newborn.jpg" alt="抱著新生兒" loading="lazy" width="1050" height="1400" />
+                <figcaption>為人父 · 喜抱新生（樣本說明）</figcaption>
+              </figure>
+            </div>
           </li>
           <li>
             <div class="year">執教歲月</div>
-            <div class="event">誨人不倦，學生尊稱「謝老師」</div>
+            <div class="event">
+              <div>校園一角，溫暖可親</div>
+              <figure class="timeline-photo">
+                <img src="timeline/05-teacher-pig-pillow.jpg" alt="執教歲月小豬頸枕" loading="lazy" width="453" height="604" />
+                <figcaption>執教歲月 · 校園一角，小豬頸枕（樣本說明）</figcaption>
+              </figure>
+            </div>
           </li>
           <li>
-            <div class="year">家人之愛</div>
-            <div class="event">與家人同行：神社參道、旅途、日常溫暖時光</div>
+            <div class="year">謝老師</div>
+            <div class="event">
+              <div>學生心意板</div>
+              <figure class="timeline-photo">
+                <img src="timeline/06-teacher-tribute.jpg" alt="學生心意板我愛純昌" loading="lazy" width="1400" height="1050" />
+                <figcaption>謝老師 · 學生心意板「我❤純昌」</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">家庭時光</div>
+            <div class="event">
+              <div>抱著孩子</div>
+              <figure class="timeline-photo">
+                <img src="timeline/07-family-toddler.jpg" alt="抱著幼兒" loading="lazy" width="1050" height="1400" />
+                <figcaption>家庭時光 · 抱著孩子（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">外遊足跡</div>
+            <div class="event">
+              <div>紐西蘭皇后鎮水畔</div>
+              <figure class="timeline-photo">
+                <img src="timeline/08-travel-nz-couple.jpg" alt="紐西蘭皇后鎮水畔" loading="lazy" width="1400" height="1050" />
+                <figcaption>外遊 · 紐西蘭皇后鎮水畔（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">外遊足跡</div>
+            <div class="event">
+              <div>皇后鎮噴射船</div>
+              <figure class="timeline-photo">
+                <img src="timeline/09-travel-nz-jetboat.jpg" alt="皇后鎮噴射船" loading="lazy" width="1400" height="1050" />
+                <figcaption>外遊 · 皇后鎮噴射船（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">閒暇時光</div>
+            <div class="event">
+              <div>天台習拳</div>
+              <figure class="timeline-photo">
+                <img src="timeline/10-leisure-rooftop.jpg" alt="天台習拳" loading="lazy" width="1050" height="1400" />
+                <figcaption>閒暇 · 天台習拳，精神奕奕（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">旅日</div>
+            <div class="event">
+              <div>嚴島神社</div>
+              <figure class="timeline-photo">
+                <img src="timeline/11-travel-miyajima.jpg" alt="嚴島神社大鳥居" loading="lazy" width="1050" height="1400" />
+                <figcaption>旅日 · 嚴島神社大鳥居前（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">家庭時光</div>
+            <div class="event">
+              <div>沙灘堆沙堡</div>
+              <figure class="timeline-photo">
+                <img src="timeline/12-family-sandcastle.jpg" alt="沙灘堆沙堡" loading="lazy" width="1400" height="1050" />
+                <figcaption>家庭時光 · 沙灘堆沙堡（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">外遊足跡</div>
+            <div class="event">
+              <div>雪中歡聚</div>
+              <figure class="timeline-photo">
+                <img src="timeline/13-travel-snow.jpg" alt="雪中同行" loading="lazy" width="1400" height="933" />
+                <figcaption>雪中同行 · 旅途歡聚（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">旅日</div>
+            <div class="event">
+              <div>川越玉屋 · 和服</div>
+              <figure class="timeline-photo">
+                <img src="timeline/14-travel-kimono.jpg" alt="川越玉屋和服留影" loading="lazy" width="933" height="1400" />
+                <figcaption>旅日 · 川越玉屋前，和服留影（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">旅日</div>
+            <div class="event">
+              <div>繪馬廊下牽手</div>
+              <figure class="timeline-photo">
+                <img src="timeline/15-travel-ema.jpg" alt="繪馬廊下牽手" loading="lazy" width="933" height="1400" />
+                <figcaption>旅日 · 繪馬廊下，牽手同行（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">外遊足跡</div>
+            <div class="event">
+              <div>燈塔與貓咪</div>
+              <figure class="timeline-photo">
+                <img src="timeline/16-travel-lighthouse.jpg" alt="燈塔與貓咪" loading="lazy" width="1050" height="1400" />
+                <figcaption>旅途小憩 · 燈塔與貓咪（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">執教情懷</div>
+            <div class="event">
+              <div>「謝教練」牌匾</div>
+              <figure class="timeline-photo">
+                <img src="timeline/17-coach-sign.jpg" alt="謝教練牌匾前" loading="lazy" width="1050" height="1400" />
+                <figcaption>「謝教練」牌匾前（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">外遊足跡</div>
+            <div class="event">
+              <div>鏡像天空</div>
+              <figure class="timeline-photo">
+                <img src="timeline/18-travel-sky-mirror.jpg" alt="鏡像天空留影" loading="lazy" width="1400" height="1050" />
+                <figcaption>旅途 · 鏡像天空留影（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">家庭時光</div>
+            <div class="event">
+              <div>與孩子同行於礫石灘</div>
+              <figure class="timeline-photo">
+                <img src="timeline/19-family-beach-run.jpg" alt="礫石灘奔跑" loading="lazy" width="1050" height="1400" />
+                <figcaption>為人父 · 與孩子同行於礫石灘（樣本說明）</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div class="year">外遊足跡</div>
+            <div class="event">
+              <div>沙丘滑沙</div>
+              <figure class="timeline-photo">
+                <img src="timeline/20-travel-sandboard.jpg" alt="沙丘滑沙" loading="lazy" width="933" height="1400" />
+                <figcaption>沙丘滑沙 · 活力旅途（樣本說明）</figcaption>
+              </figure>
+            </div>
           </li>
           <li>
             <div class="year">待補</div>
-            <div class="event">安息 · 詳見治喪資訊</div>
+            <div class="event">安息 · 詳見治喪資訊。生卒年份核實後補入。</div>
           </li>
         </ul>
       </div>
@@ -367,6 +659,7 @@
 
   <footer>
     <div class="seal">念</div>
+    <p class="motto-foot">人生到處知何似，應似飛鴻踏雪泥。</p>
     <div>靜靜紀念 · 謝純昌老師</div>
   </footer>
 </body>
