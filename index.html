@@ -687,16 +687,29 @@
       box-shadow: none !important;
       font-size: 0.86rem !important;
     }
-    /* Quiet commercial chrome from the comment widget */
+    /* Quiet commercial chrome from the comment widget.
+       Do not hide /storage/ image links — HCB wraps comment photos in
+       <a href="…htmlcommentbox.com/storage/…"><img …></a>. */
     #HCB_comment_box a[href*="rss"],
     #HCB_comment_box img[src*="rss"],
     #HCB_comment_box #HCB_rss,
     #HCB_comment_box .rss,
     #HCB_comment_box a[title*="RSS"],
-    #HCB_comment_box a[href*="htmlcommentbox.com"],
+    #HCB_comment_box a[href*="htmlcommentbox.com"]:not([href*="/storage/"]),
     #HCB_comment_box a[href*="logout"],
     #HCB_comment_box img[alt*="RSS"] {
       display: none !important;
+    }
+    #HCB_comment_box .comment a[href*="/storage/"] {
+      display: inline-block !important;
+      margin: 0.65rem 0 0.35rem;
+    }
+    #HCB_comment_box .comment a[href*="/storage/"] img {
+      display: block !important;
+      max-width: min(100%, 28rem);
+      width: auto;
+      height: auto;
+      border-radius: 0.35rem;
     }
     #HCB_comment_box label,
     #HCB_comment_box .checkbox,
