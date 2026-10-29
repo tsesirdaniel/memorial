@@ -703,49 +703,43 @@
     /* Elder-friendly large type (toggle) */
     .type-toggle {
       position: fixed;
-      right: max(0.75rem, env(safe-area-inset-right));
-      bottom: max(1.05rem, env(safe-area-inset-bottom));
+      right: max(0.85rem, env(safe-area-inset-right));
+      bottom: max(1rem, env(safe-area-inset-bottom));
       z-index: 40;
       display: inline-flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.2rem;
-      min-width: 7.6rem;
-      min-height: 7.6rem;
-      padding: 0.95rem 1.1rem;
-      border: 3px solid rgba(139, 58, 45, 0.55);
-      border-radius: 1.35rem;
-      background: rgba(255, 252, 247, 0.98);
+      gap: 0.12rem;
+      min-width: 5.6rem;
+      min-height: 5.6rem;
+      padding: 0.7rem 0.95rem;
+      border: 2px solid rgba(139, 58, 45, 0.45);
+      border-radius: 1.15rem;
+      background: rgba(255, 252, 247, 0.97);
       color: var(--accent);
       font-family: var(--sans);
-      font-size: 1.15rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      line-height: 1.2;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      line-height: 1.25;
       text-decoration: none;
-      box-shadow: 0 12px 32px rgba(31, 28, 24, 0.18);
+      box-shadow: 0 10px 28px rgba(31, 28, 24, 0.14);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       cursor: pointer;
       transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
     }
-    .type-toggle .type-toggle-aa {
-      font-size: 1.85rem;
-      font-weight: 800;
-      letter-spacing: 0.02em;
+    .type-toggle .type-toggle-mark {
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
       line-height: 1;
     }
-    .type-toggle .type-toggle-mark {
-      font-size: 1.28rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      line-height: 1.15;
-    }
     .type-toggle .type-toggle-hint {
-      font-size: 0.82rem;
+      font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.14em;
       color: var(--ink-soft);
     }
     .type-toggle:hover {
@@ -756,11 +750,11 @@
     }
     .type-toggle[aria-pressed="true"] {
       color: var(--ink);
-      border-color: rgba(31, 28, 24, 0.3);
+      border-color: rgba(31, 28, 24, 0.28);
       background: rgba(247, 242, 234, 0.98);
     }
-    .type-toggle[aria-pressed="true"] .type-toggle-aa {
-      font-size: 1.45rem;
+    .type-toggle[aria-pressed="true"] .type-toggle-mark {
+      font-size: 1.2rem;
     }
     html.is-large-type {
       font-size: 150%; /* 24px from 16px base, on top of page 106.25% */
@@ -823,13 +817,13 @@
     }
     @media (max-width: 520px) {
       .type-toggle {
-        min-width: 7.1rem;
-        min-height: 7.1rem;
-        padding: 0.85rem 1rem;
+        min-width: 5.2rem;
+        min-height: 5.2rem;
+        padding: 0.65rem 0.85rem;
+        font-size: 1rem;
       }
-      .type-toggle .type-toggle-aa { font-size: 1.7rem; }
-      .type-toggle .type-toggle-mark { font-size: 1.18rem; }
-      .type-toggle .type-toggle-hint { font-size: 0.78rem; letter-spacing: 0.08em; }
+      .type-toggle .type-toggle-mark { font-size: 1.4rem; }
+      .type-toggle .type-toggle-hint { font-size: 0.68rem; letter-spacing: 0.1em; }
     }
 
   </style>
@@ -1107,10 +1101,9 @@
 
     
 
-  <button type="button" class="type-toggle" id="type-toggle" aria-pressed="false" title="點我放大字體" aria-label="放大字體">
-    <span class="type-toggle-aa" aria-hidden="true">大</span>
-    <span class="type-toggle-mark">放大字體</span>
-    <span class="type-toggle-hint">點我 · 字變大</span>
+  <button type="button" class="type-toggle" id="type-toggle" aria-pressed="false" title="點此放大全文" aria-label="放大字體">
+    <span class="type-toggle-mark">大字</span>
+    <span class="type-toggle-hint">點此放大</span>
   </button>
 
   <script>
@@ -1146,11 +1139,11 @@
       function apply(on) {
         root.classList.toggle("is-large-type", on);
         btn.setAttribute("aria-pressed", on ? "true" : "false");
-        btn.setAttribute("aria-label", on ? "還原標準字體" : "放大字體");
-        btn.title = on ? "點我還原字體" : "點我放大字體";
+        btn.setAttribute("aria-label", on ? "恢復標準字體" : "放大字體");
+        btn.title = on ? "點此恢復標準字體" : "點此放大全文";
         btn.innerHTML = on
-          ? '<span class="type-toggle-aa" aria-hidden="true">小</span><span class="type-toggle-mark">標準字體</span><span class="type-toggle-hint">點我 · 還原</span>'
-          : '<span class="type-toggle-aa" aria-hidden="true">大</span><span class="type-toggle-mark">放大字體</span><span class="type-toggle-hint">點我 · 字變大</span>';
+          ? '<span class="type-toggle-mark">標準</span><span class="type-toggle-hint">點此還原</span>'
+          : '<span class="type-toggle-mark">大字</span><span class="type-toggle-hint">點此放大</span>';
         try { localStorage.setItem(KEY, on ? "1" : "0"); } catch (e) {}
       }
       var saved = false;
