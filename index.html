@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light only" />
+  <meta name="color-scheme" content="only light" />
   <meta name="theme-color" content="#f7f2ea" />
   <title>紀念 謝純昌 · 謝老師</title>
   <meta name="description" content="紀念謝純昌老師。靜靜追思，溫柔記得。人生到處知何似 應似飛鴻踏雪泥" />
@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      color-scheme: light only;
+      color-scheme: only light;
       --paper: #f7f2ea;
       --paper-deep: #ebe4d7;
       --ink: #1c1915;
@@ -25,6 +25,13 @@
       --line: #ddd4c6;
       --accent: #8b3a2d;
       --accent-soft: #c4a090;
+      /* Solid tiles at least 16px. Android Chrome Auto Dark recolors CSS colors but leaves these images alone. */
+      --paper-tile: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAAT0lEQVR42u3PMQ0AAAgDsPmXysnDiwRukiY10EzXaxEQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQuCzkOjKkMsnp3wAAAABJRU5ErkJggg==");
+      --card-tile: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAATklEQVR42u3PQQkAAAgEsOtf2I+gEXwLgxVYpuu1CAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAhcFlGJIsKG4DZyAAAAAElFTkSuQmCC");
+      --ink-tile: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAAT0lEQVR42u3PQQkAAAgEsCvhQ7B/TiP4FgYrsEzXaxEQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQuCwqVaA9V9uGeAAAAABJRU5ErkJggg==");
+      --soft-tile: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAAUElEQVR42u3PMQ0AAAgDsAnj5MK/ICRwkzSpgWa6XouAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwGUB6fqgtZ/OFMkAAAAASUVORK5CYII=");
+      --muted-tile: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAATklEQVR42u3PMQ0AAAgDsPnl5sQ7ErhJmtRAM12vRUBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEDgsieG0TyovAnvAAAAAElFTkSuQmCC");
+      --accent-tile: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAAT0lEQVR42u3PQQkAAAgEsCtkASta2gi+hcEKLNP1WgQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQELgtzMSDirkZnhQAAAABJRU5ErkJggg==");
       --card: #fffcf7;
       --shadow: 0 12px 32px rgba(31, 28, 24, 0.055);
       --serif: "Noto Serif TC", "Source Han Serif TC", "Songti TC", "PingFang TC", serif;
@@ -35,18 +42,20 @@
     * { box-sizing: border-box; }
     html {
       scroll-behavior: smooth;
-      color-scheme: light only;
-      background: #f7f2ea;
+      color-scheme: only light;
+      background-color: #f7f2ea;
+      background-image: var(--paper-tile);
+      background-repeat: repeat;
       font-size: 106.25%; /* slightly larger type across the page */
     }
     body {
       margin: 0;
       min-height: 100vh;
       padding-bottom: max(7.25rem, calc(5.6rem + 2.5rem + env(safe-area-inset-bottom)));
+      color-scheme: only light;
       background-color: #f7f2ea;
-      background-image:
-        radial-gradient(900px 480px at 50% -8%, #fffdf8 0%, transparent 55%),
-        linear-gradient(180deg, #f7f2ea 0%, #ebe4d7 100%);
+      background-image: var(--paper-tile);
+      background-repeat: repeat;
       color: #1c1915;
       font-family: var(--serif);
       line-height: 1.9;
@@ -55,7 +64,7 @@
     /* Keep forced-light look if Android still tries to invert */
     @media (prefers-color-scheme: dark) {
       :root, html, body {
-        color-scheme: light only;
+        color-scheme: only light;
         background-color: #f7f2ea !important;
         color: #1c1915 !important;
       }
@@ -93,7 +102,7 @@
       -webkit-backdrop-filter: blur(14px) saturate(1.1);
       background: #f7f2ea;
       border-bottom: none;
-      color-scheme: light only;
+      color-scheme: only light;
     }
     .nav .inner {
       display: flex; flex-wrap: wrap; gap: 0.85rem 2.75rem;
@@ -156,8 +165,7 @@
       position: sticky;
       top: 3.4rem;
       z-index: 15;
-      display: grid;
-      place-items: center;
+      display: block;
       width: 100%;
       margin: 0;
       min-height: 2.2em;
@@ -169,10 +177,12 @@
       letter-spacing: 0.28em;
       font-weight: 500;
       line-height: 1.7;
-      background: #f7f2ea;
-      box-shadow: 0 -14px 0 0 #f7f2ea;
-      color-scheme: light only;
-      overflow: hidden;
+      background-color: #f7f2ea;
+      background-image: var(--paper-tile);
+      background-repeat: repeat;
+      box-shadow: none;
+      color-scheme: only light;
+      overflow: visible;
       transition: opacity 0.4s ease, transform 0.4s ease, max-height 0.4s ease, min-height 0.4s ease, padding 0.4s ease, border-color 0.35s ease, box-shadow 0.35s ease;
     }
     .motto.is-faded {
@@ -185,6 +195,27 @@
       padding-bottom: 0;
       border-bottom-color: transparent;
       box-shadow: none;
+    }
+    .motto::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -14px;
+      height: 14px;
+      background-color: #f7f2ea;
+      background-image: var(--paper-tile);
+      background-repeat: repeat;
+      pointer-events: none;
+    }
+    .motto.is-faded::before {
+      height: 0;
+      top: 0;
+    }
+    .motto-lines {
+      display: grid;
+      width: 100%;
+      overflow: hidden;
     }
     .motto-line {
       grid-area: 1 / 1;
@@ -224,6 +255,7 @@
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
       }
+      .motto-lines { display: block; overflow: visible; }
       .motto-line {
         display: block;
         opacity: 1 !important;
@@ -987,6 +1019,99 @@
       .type-toggle .type-toggle-hint { font-size: 0.68rem; letter-spacing: 0.1em; }
     }
 
+    /* Android Chrome Auto Dark recolors background-color and text. Opaque tiles are left alone. */
+    html, body, .nav, .motto, .motto::before, footer {
+      color-scheme: only light !important;
+      background-color: #f7f2ea !important;
+      background-image: var(--paper-tile) !important;
+      background-repeat: repeat !important;
+    }
+    .card, .card.memories, .memory-card, .timeline-photo figcaption, .type-toggle {
+      background-color: #fffcf7 !important;
+      background-image: var(--card-tile) !important;
+      background-repeat: repeat !important;
+    }
+    input, textarea, select {
+      background-color: #fffcf7 !important;
+      background-image: var(--ink-tile), var(--card-tile) !important;
+      background-repeat: repeat, repeat !important;
+      background-size: 64px 64px, 64px 64px !important;
+      background-clip: text, padding-box !important;
+      -webkit-background-clip: text, padding-box !important;
+      -webkit-text-fill-color: transparent !important;
+      color: #1c1915 !important;
+    }
+    h1, h2, h3, .value, .motto-line--a, .memory-card .who, .memory-card .body {
+      background-image: var(--ink-tile) !important;
+      background-repeat: repeat !important;
+      background-size: 64px 64px !important;
+      background-clip: text !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      color: #1c1915;
+    }
+    .aka, .nav a, .obit-body p, .obit-sign, .obit-sign-line, .obit-sign-close, .closing-line, .type-toggle-hint, .event {
+      background-image: var(--soft-tile) !important;
+      background-repeat: repeat !important;
+      background-size: 64px 64px !important;
+      background-clip: text !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      color: #4a443c;
+    }
+    .kicker, .label, .en, figcaption, .memories-intro, .memory-note, .memory-card .when, .memory-card .who span, .card > p {
+      background-image: var(--muted-tile) !important;
+      background-repeat: repeat !important;
+      background-size: 64px 64px !important;
+      background-clip: text !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      color: #7d756b;
+    }
+    a, .year, .motto-line--b, .type-toggle-mark, .seal {
+      background-image: var(--accent-tile) !important;
+      background-repeat: repeat !important;
+      background-size: 64px 64px !important;
+      background-clip: text !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      color: #8b3a2d;
+    }
+    .nav a {
+      color: #4a443c;
+      background-image: var(--soft-tile) !important;
+    }
+    .motto-line--a { color: #1c1915 !important; }
+    .motto-line--b { color: #8b3a2d !important; }
+    .nav a:hover { background-image: var(--accent-tile) !important; color: #8b3a2d; }
+    .timeline-photo figcaption {
+      background-color: #fffcf7 !important;
+      background-image: var(--muted-tile), var(--card-tile) !important;
+      background-repeat: repeat, repeat !important;
+      background-size: 64px 64px, 64px 64px !important;
+      background-clip: text, padding-box !important;
+      -webkit-background-clip: text, padding-box !important;
+      -webkit-text-fill-color: transparent !important;
+      color: #7d756b !important;
+    }
+    a.seal {
+      background-color: transparent !important;
+      background-image: var(--accent-tile), linear-gradient(transparent, transparent) !important;
+      background-repeat: repeat, repeat !important;
+      background-size: 64px 64px, auto !important;
+      background-clip: text, padding-box !important;
+      -webkit-background-clip: text, padding-box !important;
+    }
+    a.seal:hover { background-color: rgba(139, 58, 45, 0.08) !important; }
+    #HCB_comment_box a, #HCB_comment_box button, #HCB_comment_box .btn, #HCB_comment_box input[type="submit"] {
+      background-color: #8b3a2d !important;
+      background-image: none !important;
+      background-clip: border-box !important;
+      -webkit-background-clip: border-box !important;
+      -webkit-text-fill-color: #fffdf9 !important;
+      color: #fffdf9 !important;
+    }
+
   </style>
 </head>
 <body id="top">
@@ -1000,8 +1125,10 @@
   </nav>
 
   <p class="motto" aria-label="人生到處知何似 應似飛鴻踏雪泥">
-    <span class="motto-line motto-line--a">人生到處知何似</span>
-    <span class="motto-line motto-line--b">應似飛鴻踏雪泥</span>
+    <span class="motto-lines">
+      <span class="motto-line motto-line--a">人生到處知何似</span>
+      <span class="motto-line motto-line--b">應似飛鴻踏雪泥</span>
+    </span>
   </p>
 
   <header class="hero wrap">
