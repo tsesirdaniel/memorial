@@ -65,10 +65,11 @@
       }
       .motto {
         background-color: #f7f2ea !important;
-        color: #8b3a2d !important;
+        color: #1c1915 !important;
       }
-      .motto-line,
-      .motto-line--a,
+      .motto-line--a {
+        color: #1c1915 !important;
+      }
       .motto-line--b {
         color: #8b3a2d !important;
       }
@@ -163,7 +164,7 @@
       max-height: 4.5em;
       padding: 0.42rem 1rem 0.58rem;
       border-bottom: 1px solid rgba(221, 212, 198, 0.9);
-      color: var(--accent);
+      color: var(--ink);
       font-size: clamp(1.45rem, 3.6vw, 1.95rem);
       letter-spacing: 0.28em;
       font-weight: 500;
@@ -192,10 +193,12 @@
       transition: opacity 1.15s ease, transform 1.15s ease;
     }
     .motto-line--a {
+      color: var(--ink);
       opacity: 1;
       transform: translateY(0);
     }
     .motto-line--b {
+      color: var(--accent);
       opacity: 0;
       transform: translateY(0.4rem);
       pointer-events: none;
