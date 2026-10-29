@@ -756,24 +756,58 @@
     html.is-large-type {
       font-size: 150%; /* 24px from 16px base, on top of page 106.25% */
     }
+    /* Keep top nav on one row even when type is enlarged */
     html.is-large-type .nav .inner {
-      font-size: 1.08rem;
-      gap: 0.95rem 2.25rem;
+      flex-wrap: nowrap;
+      justify-content: center;
+      gap: 0.35rem 1.05rem;
+      padding: 0.72rem 0.35rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+    }
+    html.is-large-type .nav a {
+      white-space: nowrap;
+      flex: 0 0 auto;
     }
     html.is-large-type .motto {
-      font-size: clamp(1.85rem, 5vw, 2.6rem);
+      top: 3.15rem;
+      font-size: clamp(1.55rem, 4.2vw, 2.15rem);
+      letter-spacing: 0.22em;
     }
-    html.is-large-type .obit-body {
-      font-size: 1.28rem;
-      line-height: 2.15;
+    /* Even reading sizes: body copy + captions align; small labels catch up */
+    html.is-large-type .obit-formal .obit-body {
+      font-size: 1.05rem;
+      line-height: 2.05;
     }
-    html.is-large-type .timeline .year,
+    html.is-large-type .value,
     html.is-large-type .memories-intro,
+    html.is-large-type .timeline-photo figcaption,
+    html.is-large-type .memory-card .body,
     html.is-large-type .closing-line {
-      font-size: 1.08em;
+      font-size: 1.05rem;
+      line-height: 1.85;
     }
-    html.is-large-type .timeline-photo figcaption {
-      font-size: 1.28rem;
+    html.is-large-type .timeline .year {
+      font-size: 1rem;
+    }
+    html.is-large-type .section-title h2 {
+      font-size: 1.35rem;
+    }
+    html.is-large-type .aka,
+    html.is-large-type .label,
+    html.is-large-type .memory-form label,
+    html.is-large-type .memory-form-title {
+      font-size: 1rem;
+    }
+    html.is-large-type .kicker,
+    html.is-large-type .section-title .en {
+      font-size: 0.82rem;
+      letter-spacing: 0.22em;
+    }
+    html.is-large-type .memory-form input,
+    html.is-large-type .memory-form textarea,
+    html.is-large-type .memory-form button {
+      font-size: 1.05rem;
     }
     @media (max-width: 520px) {
       .type-toggle {
