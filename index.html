@@ -825,6 +825,31 @@
     html.is-large-type .memory-form button {
       font-size: 1.05rem;
     }
+    /* Keep timeline photos visually large relative to bigger type */
+    html.is-large-type #timeline.wrap-wide {
+      width: min(1120px, calc(100% - 1.5rem));
+    }
+    html.is-large-type .timeline-photos {
+      max-width: min(100%, 52rem);
+      gap: 1rem;
+    }
+    html.is-large-type .timeline-photo {
+      max-width: min(100%, 48rem);
+    }
+    @media (min-width: 900px) {
+      html.is-large-type .timeline-photos--triple {
+        max-width: min(100%, 60rem);
+      }
+      html.is-large-type .timeline-photo {
+        max-width: min(100%, 52rem);
+      }
+    }
+    html.is-large-type .timeline-photos > .timeline-photo:only-child img {
+      max-height: min(68vh, 36rem);
+    }
+    html.is-large-type .timeline-photo img {
+      min-height: 12rem;
+    }
     html.is-large-type .obit-sign {
       font-size: 1.05rem;
     }
