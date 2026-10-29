@@ -720,6 +720,10 @@
       box-shadow: none !important;
       font-size: 0.86rem !important;
     }
+    /* HCB puts the flag control in the action row; visitors should not see it. */
+    #HCB_comment_box .hcb-flag {
+      display: none !important;
+    }
     /* Quiet commercial chrome from the comment widget.
        Do not hide /storage/ image links — HCB wraps comment photos in
        <a href="…htmlcommentbox.com/storage/…"><img …></a>. */
@@ -1277,6 +1281,26 @@
  hcb_user.err_spam="系統未能接受這則留言。";
  hcb_user.err_blocked="這則留言未能通過本頁的發佈規則。";
  (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="https://www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24NPZiEGbgZEvtresoErBIS0&opts=16798&num=10&ts=1793205816468");s.setAttribute("async","true");s.setAttribute("charset","utf-8");if (hcb_user.PAGE) s.setAttribute("defer","true");document.getElementById("hcb").parentNode.insertBefore(s, document.getElementById("hcb"));})(); /*-->*/</script>
+ <script>
+  /* HCB appends a middot inside Like and Reply ("讚 ·"), not as a separate node. */
+  (function () {
+    var box = document.getElementById("HCB_comment_box");
+    if (!box) return;
+    var trailing = /[\s\u00b7\u2022\u30fb.]+$/;
+    function clean() {
+      var buttons = box.querySelectorAll(".hcb-like, .hcb-reply");
+      for (var i = 0; i < buttons.length; i++) {
+        var btn = buttons[i];
+        var text = btn.textContent.replace(trailing, "");
+        if (text && text !== btn.textContent) btn.textContent = text;
+      }
+    }
+    clean();
+    if (window.MutationObserver) {
+      new MutationObserver(clean).observe(box, { childList: true, subtree: true });
+    }
+  })();
+ </script>
 <!-- end htmlcommentbox.com -->
         <p class="memory-note">請勿留下敏感個人資料。家人可於留言系統後台移除不當內容。</p>
       </div>
