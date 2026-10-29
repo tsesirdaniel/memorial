@@ -639,11 +639,20 @@
     #HCB_comment_box textarea,
     #HCB_comment_box input[type="text"],
     #HCB_comment_box input[type="email"] {
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
       border: 1px solid var(--line) !important;
       border-radius: 10px !important;
       background: #fffdf9 !important;
       font-family: var(--sans) !important;
       box-shadow: none !important;
+    }
+    #HCB_comment_box,
+    #HCB_comment_box .hcb-wrapper,
+    #HCB_comment_box form {
+      max-width: 100% !important;
+      box-sizing: border-box !important;
     }
     #HCB_comment_box .btn,
     #HCB_comment_box button,
@@ -820,24 +829,64 @@
     html.is-large-type .timeline .year {
       font-size: 1rem;
     }
+    html.is-large-type .section-title {
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.3rem 0.7rem;
+    }
     html.is-large-type .section-title h2 {
-      font-size: 1.35rem;
+      font-size: 1.18rem;
+      letter-spacing: 0.12em;
+      text-indent: 0.12em;
+      white-space: nowrap;
     }
     html.is-large-type .aka,
     html.is-large-type .label,
     html.is-large-type .memory-form label,
     html.is-large-type .memory-form-title {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
     html.is-large-type .kicker,
     html.is-large-type .section-title .en {
-      font-size: 0.82rem;
-      letter-spacing: 0.22em;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
     }
     html.is-large-type .memory-form input,
     html.is-large-type .memory-form textarea,
     html.is-large-type .memory-form button {
-      font-size: 1.05rem;
+      font-size: 1rem;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    html.is-large-type .card.memories,
+    html.is-large-type #memories .card {
+      overflow-x: hidden;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    html.is-large-type #HCB_comment_box,
+    html.is-large-type #HCB_comment_box .hcb-wrapper,
+    html.is-large-type #HCB_comment_box form {
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+      box-sizing: border-box !important;
+    }
+    html.is-large-type #HCB_comment_box textarea,
+    html.is-large-type #HCB_comment_box input[type="text"],
+    html.is-large-type #HCB_comment_box input[type="email"] {
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      font-size: 1rem !important;
+    }
+    html.is-large-type .memories-intro {
+      font-size: 1rem;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+    html.is-large-type #memories.wrap {
+      width: min(880px, calc(100% - 1.5rem));
     }
     /* Keep timeline photos visually large relative to bigger type */
     html.is-large-type #timeline.wrap-wide {
