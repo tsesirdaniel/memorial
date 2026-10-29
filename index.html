@@ -42,6 +42,7 @@
     body {
       margin: 0;
       min-height: 100vh;
+      padding-bottom: max(7.25rem, calc(5.6rem + 2.5rem + env(safe-area-inset-bottom)));
       background-color: #f7f2ea;
       background-image:
         radial-gradient(900px 480px at 50% -8%, #fffdf8 0%, transparent 55%),
@@ -712,11 +713,13 @@
       justify-content: center;
       gap: 0.12rem;
       min-width: 5.6rem;
+      width: 5.6rem;
       min-height: 5.6rem;
-      padding: 0.7rem 0.95rem;
+      height: 5.6rem;
+      padding: 0.7rem 0.7rem;
       border: 2px solid rgba(139, 58, 45, 0.45);
       border-radius: 1.15rem;
-      background: rgba(255, 252, 247, 0.97);
+      background: rgba(255, 252, 247, 0.92);
       color: var(--accent);
       font-family: var(--sans);
       font-size: 1.05rem;
@@ -724,11 +727,12 @@
       letter-spacing: 0.08em;
       line-height: 1.25;
       text-decoration: none;
+      box-sizing: border-box;
       box-shadow: 0 10px 28px rgba(31, 28, 24, 0.14);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       cursor: pointer;
-      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
     }
     .type-toggle .type-toggle-mark {
       font-size: 1.55rem;
@@ -749,15 +753,19 @@
       transform: translateY(-1px);
     }
     .type-toggle[aria-pressed="true"] {
+      min-width: 5.6rem;
+      width: 5.6rem;
+      min-height: 5.6rem;
+      height: 5.6rem;
       color: var(--ink);
       border-color: rgba(31, 28, 24, 0.28);
       background: rgba(247, 242, 234, 0.98);
     }
-    .type-toggle[aria-pressed="true"] .type-toggle-mark {
-      font-size: 1.2rem;
-    }
     html.is-large-type {
       font-size: 150%; /* 24px from 16px base, on top of page 106.25% */
+    }
+    html.is-large-type body {
+      padding-bottom: max(8.5rem, calc(5.6rem + 3.5rem + env(safe-area-inset-bottom)));
     }
     /* Keep top nav on one row even when type is enlarged */
     html.is-large-type .nav .inner {
@@ -818,8 +826,10 @@
     @media (max-width: 520px) {
       .type-toggle {
         min-width: 5.2rem;
+        width: 5.2rem;
         min-height: 5.2rem;
-        padding: 0.65rem 0.85rem;
+        height: 5.2rem;
+        padding: 0.65rem 0.65rem;
         font-size: 1rem;
       }
       .type-toggle .type-toggle-mark { font-size: 1.4rem; }
