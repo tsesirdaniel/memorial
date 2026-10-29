@@ -151,6 +151,7 @@
       width: 100%;
       margin: 0;
       min-height: 2.2em;
+      max-height: 4.5em;
       padding: 0.42rem 1rem 0.58rem;
       border-bottom: 1px solid rgba(221, 212, 198, 0.9);
       color: var(--accent);
@@ -161,6 +162,19 @@
       background: #f7f2ea;
       box-shadow: 0 -14px 0 0 #f7f2ea;
       color-scheme: light only;
+      overflow: hidden;
+      transition: opacity 0.4s ease, transform 0.4s ease, max-height 0.4s ease, min-height 0.4s ease, padding 0.4s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .motto.is-faded {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-0.35rem);
+      max-height: 0;
+      min-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      border-bottom-color: transparent;
+      box-shadow: none;
     }
     .motto-line {
       grid-area: 1 / 1;
@@ -1193,11 +1207,14 @@
         apply(!root.classList.contains("is-large-type"));
       });
       var obit = document.getElementById("obituary");
+      var mottoEl = document.querySelector(".motto");
       function syncFade() {
         if (!obit) return;
         var top = obit.getBoundingClientRect().top;
+        var fade = top < 140;
         // Fade once 訃聞 approaches the sticky header band
-        btn.classList.toggle("is-faded", top < 140);
+        btn.classList.toggle("is-faded", fade);
+        if (mottoEl) mottoEl.classList.toggle("is-faded", fade);
       }
       window.addEventListener("scroll", syncFade, { passive: true });
       window.addEventListener("resize", syncFade);
