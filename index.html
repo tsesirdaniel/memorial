@@ -732,7 +732,7 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       cursor: pointer;
-      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.25s ease, opacity 0.35s ease;
     }
     .type-toggle .type-toggle-mark {
       font-size: 1.55rem;
@@ -760,6 +760,11 @@
       color: var(--ink);
       border-color: rgba(31, 28, 24, 0.28);
       background: rgba(247, 242, 234, 0.98);
+    }
+    .type-toggle.is-faded {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(0.4rem);
     }
     html.is-large-type {
       font-size: 150%; /* 24px from 16px base, on top of page 106.25% */
@@ -1162,6 +1167,16 @@
       btn.addEventListener("click", function () {
         apply(!root.classList.contains("is-large-type"));
       });
+      var obit = document.getElementById("obituary");
+      function syncFade() {
+        if (!obit) return;
+        var top = obit.getBoundingClientRect().top;
+        // Fade once 訃聞 approaches the sticky header band
+        btn.classList.toggle("is-faded", top < 140);
+      }
+      window.addEventListener("scroll", syncFade, { passive: true });
+      window.addEventListener("resize", syncFade);
+      syncFade();
     })();
   </script>
 </body>
