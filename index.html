@@ -311,8 +311,8 @@
     .obit-formal .obit-head {
       margin: 0 0 1.25rem;
       font-size: 1.4rem;
-      letter-spacing: 0.42em;
-      text-indent: 0.42em;
+      letter-spacing: 0;
+      text-indent: 0;
       font-weight: 600;
       color: var(--ink);
     }
@@ -330,6 +330,12 @@
       font-size: 1.02rem;
     }
     .obit-formal .obit-body p:last-child { margin-bottom: 0; }
+    .obit-formal .obit-body p.obit-formula {
+      text-align: center;
+      text-indent: 0.28em;
+      letter-spacing: 0.28em;
+      margin-top: 1.35rem;
+    }
     .obit-sign {
       margin-top: 1.75rem;
       padding-top: 1.15rem;
@@ -365,20 +371,20 @@
       letter-spacing: 0.16em;
       font-size: 1.12rem;
     }
-    .service-note {
-      margin: 0.75rem 0 0;
-      font-family: var(--sans);
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
-      line-height: 1.7;
-    }
-
     .service-grid {
       display: grid;
       gap: 1.1rem;
+      align-items: stretch;
     }
     @media (min-width: 680px) {
-      .service-grid { grid-template-columns: 1.15fr 1fr; gap: 1.25rem; }
+      .service-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    }
+    .service-grid .card {
+      display: flex;
+      flex-direction: column;
+    }
+    .service-grid .value {
+      line-height: 1.75;
     }
     .label {
       display: block;
@@ -1237,15 +1243,15 @@
         <h2>訃告</h2>
         <span class="en">Obituary</span>
       </div>
-      <div class="card obit-formal obit-notice">
-        <h3 class="obit-head">訃告</h3>
+      <div class="card obit-formal">
+        <h3 class="obit-head">訃　告</h3>
         <div class="obit-body">
-          <p class="obit-name">先父 謝純昌 先生</p>
-          <p>於公曆2026年10月27日與世長辭<br>享壽六十八歲</p>
-          <p>喪禮謹擇於<br>新界大圍寶福紀念館二樓寶善堂<br>地址：新界大圍悠安街一號<br>以道教儀式設靈及供親友弔唁<br>公曆：2026年11月13日（星期五）<br>時間：下午6時正</p>
-          <p>翌日出殯大殮禮<br>公曆：2026年11月14日（星期六）<br>時間：上午11時正<br>辭靈禮後隨即出殯靈柩奉移<br>粉嶺和合石火葬場進行火化禮<br>屆時備有旅遊車接載各親友往返</p>
-          <p>為答謝各位親友的濃情厚意,於火葬禮完成後,<br>我們備有纓紅宴款待各位,希望各位抽空參聚,<br>以聊表我們對各位親朋好友的一點心意。</p>
-          <p>衷心感激各位親友的慰問及關懷,<br>我們家人銘感不盡,謹鞠躬拜謝！</p>
+          <p>先考 謝公純昌府君，痛於公曆二零二六年十月二十七日（農曆丙午年九月十八日）與世長辭，享壽六十八歲。遺體現移奉新界大圍寶福紀念館治喪。</p>
+          <p>謹擇於公曆二零二六年十一月十三日（星期五）於新界大圍悠安街一號寶福紀念館二樓「寶善堂」設靈，下午六時正以道教儀式進行法事，恭候親友蒞臨弔唁。</p>
+          <p>翌日十一月十四日（星期六）上午十一時正舉行大殮，辭靈後隨即出殯，靈柩奉移粉嶺和合石火葬場舉行火化禮。屆時備有旅遊巴接載親友往返。</p>
+          <p>禮成後，謹備纓紅宴聊表謝忱，敬希撥冗光臨。</p>
+          <p class="obit-formula">哀此訃聞</p>
+          <p>承蒙各親友關懷慰問，孝眷人等銘感五內，謹此泣謝。</p>
         </div>
         <div class="obit-sign"><span class="obit-sign-line">謝府眾孝家眷</span><span class="obit-sign-close">泣告</span></div>
       </div>
@@ -1258,7 +1264,7 @@
       </div>
       <div class="card obit-formal">
         <div class="obit-body">
-          <p>不孝長男殷正率家人泣告：先父謝公諱純昌府君，平生剛正自持，待人以誠；與友相交，重信講義，古道熱腸；為夫為父，愛深且久，凡事默然肩承，家人皆知其心底溫厚。</p>
+          <p>先父謝公諱純昌府君，平生剛正自持，待人以誠；與友相交，重信講義，古道熱腸；為夫為父，愛深且久，凡事默然肩承，家人皆知其心底溫厚。</p>
           <p>先父畢生執教杏壇，春風化雨，作育英才。治學與處事皆一絲不苟，凡事力臻完美；胸懷文人風骨，儒雅書卷氣與立身責任感並存。講堂之上，傾囊相授、誨人不倦，是學子敬重愛戴的「謝老師」；家庭之中，與家母相知相惜，悉心撫育一子一女，是處處疼惜妻子、一生牽掛兒女的慈父。</p>
           <p>二〇二四年初癌疾復發，先父堅毅面對，積極求治，不改其志；其間與家人遊歷四方，惜取相聚時光。其後曾居澳洲，與多年故交重逢，暢敘平生，安享退休歲月；今年九月，喜見幼孫誕生，共享天倫。先父此生圓滿，面對病患堅韌不屈；及至暮年最後數月，先父於沙田賽馬會善寧之家接受舒緩治療，病痛得紓，身心泰然；終在至親摯愛陪伴下，從容走畢此生旅程，於二〇二六年十月二十七日安詳辭世，享壽六十八歲。兒輩當永懷其為師、為友、為父之風範，銘記於心，不敢或忘。</p>
         </div>
@@ -1273,20 +1279,19 @@
       <div class="service-grid">
         <div class="card">
           <span class="label">場地</span>
-          <div class="value">寶福紀念館二樓寶善堂（新界大圍悠安街一號）</div>
+          <div class="value">寶福紀念館二樓「寶善堂」<br>（新界大圍悠安街一號）</div>
         </div>
         <div class="card">
           <span class="label">設靈</span>
-          <div class="value">2026年11月13日（星期五）<br>下午6時正</div>
+          <div class="value">二零二六年十一月十三日（星期五）<br>下午六時正<br>道教</div>
         </div>
         <div class="card">
-          <span class="label">出殯／火化</span>
-          <div class="value">2026年11月14日（星期六）上午11時正<br>粉嶺和合石火葬場<br>備有旅遊巴接載親友往返</div>
-          <p class="service-note">火葬禮完成後，備有纓紅宴。</p>
+          <span class="label">大殮／出殯</span>
+          <div class="value">二零二六年十一月十四日（星期六）<br>上午十一時正<br>粉嶺和合石火葬場<br>備有旅遊巴接載親友往返</div>
         </div>
         <div class="card">
-          <span class="label">禮儀</span>
-          <div class="value">道教</div>
+          <span class="label">纓紅宴</span>
+          <div class="value">禮成後，謹備纓紅宴聊表謝忱，敬希撥冗光臨。</div>
         </div>
       </div>
     </section>
