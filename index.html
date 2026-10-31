@@ -712,51 +712,28 @@
       color: var(--ink);
     }
     #HCB_comment_box .home-desc { display: none !important; }
+    /* Solid muted ink. The page-wide h3 rule clips text to a tile and
+       fills it transparent, which hides this heading on some browsers. */
     #HCB_comment_box h3 {
-      margin: 0 0 0.85rem !important;
-      font-family: var(--serif) !important;
-      font-size: 0.92rem !important;
-      font-weight: 500 !important;
-      letter-spacing: 0.16em;
+      display: block;
+      margin: 0 0 0.85rem;
+      font-family: var(--serif);
+      font-size: 0.92rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
       line-height: 1.65;
-      color: #7d756b !important;
-      background-color: transparent !important;
-      background-image: var(--muted-tile) !important;
-      background-repeat: repeat !important;
-      background-size: 64px 64px !important;
-      background-clip: text !important;
-      -webkit-background-clip: text !important;
-      -webkit-text-fill-color: transparent !important;
-    }
-    #HCB_comment_box h3 * {
-      font: inherit !important;
-      letter-spacing: inherit;
-      color: #7d756b !important;
-      background-color: transparent !important;
-      background-image: var(--muted-tile) !important;
-      background-repeat: repeat !important;
-      background-size: 64px 64px !important;
-      background-clip: text !important;
-      -webkit-background-clip: text !important;
-      -webkit-text-fill-color: transparent !important;
-      text-decoration: none !important;
+      color: var(--muted) !important;
+      background: none !important;
+      -webkit-background-clip: border-box !important;
+      -webkit-text-fill-color: var(--muted) !important;
     }
     #HCB_comment_box .hcb-comment-n {
-      font-family: var(--serif) !important;
-      font-size: 0.78rem !important;
-      font-weight: 500 !important;
+      font-family: var(--serif);
+      font-size: 0.82rem;
+      font-weight: 500;
       letter-spacing: 0.04em;
-      line-height: 1.5;
-      color: #7d756b !important;
-      margin-right: 0.4em;
-      background-color: transparent !important;
-      background-image: var(--muted-tile) !important;
-      background-repeat: repeat !important;
-      background-size: 64px 64px !important;
-      background-clip: text !important;
-      -webkit-background-clip: text !important;
-      -webkit-text-fill-color: transparent !important;
-      text-decoration: none !important;
+      color: var(--muted);
+      margin-right: 0.35em;
     }
     #HCB_comment_box textarea,
     #HCB_comment_box input[type="text"],
@@ -1602,6 +1579,107 @@
     clean();
     if (window.MutationObserver) {
       new MutationObserver(clean).observe(box, { childList: true, subtree: true });
+    }
+  })();
+
+  /* HCB never emits .hcb-comment-n. Number top-level notes, and retitle the heading. */
+  (function () {
+    var box = document.getElementById("HCB_comment_box");
+    if (!box) return;
+
+    function insideReplies(el) {
+      var p = el.parentElement;
+      while (p && p !== box) {
+        if (p.id && p.id.indexOf("replies_") === 0) return true;
+        p = p.parentElement;
+      }
+      return false;
+    }
+
+    function nestedInComment(el) {
+      var p = el.parentElement;
+      while (p && p !== box) {
+        if (p.classList && p.classList.contains("comment")) return true;
+        p = p.parentElement;
+      }
+      return false;
+    }
+
+    function topLevelComments(list) {
+      var out = [];
+      var el = list.firstElementChild;
+      while (el) {
+        if (el.classList && el.classList.contains("comment") && !insideReplies(el)) out.push(el);
+        el = el.nextElementSibling;
+      }
+      if (out.length) return out;
+      var all = list.querySelectorAll(".comment");
+      for (var i = 0; i < all.length; i++) {
+        if (insideReplies(all[i]) || nestedInComment(all[i])) continue;
+        out.push(all[i]);
+      }
+      return out;
+    }
+
+    function ownBlockquote(comment) {
+      var el = comment.firstElementChild;
+      while (el) {
+        if (el.tagName === "BLOCKQUOTE") return el;
+        el = el.nextElementSibling;
+      }
+      return null;
+    }
+
+    function childWithClass(parent, className) {
+      var el = parent.firstElementChild;
+      while (el) {
+        if (el.classList && el.classList.contains(className)) return el;
+        el = el.nextElementSibling;
+      }
+      return null;
+    }
+
+    function boxHeading() {
+      var el = box.firstElementChild;
+      while (el) {
+        if (el.tagName === "H3") return el;
+        el = el.nextElementSibling;
+      }
+      return null;
+    }
+
+    function numberComments() {
+      var list = box.querySelector("#comments_list");
+      if (!list) return;
+      var comments = topLevelComments(list);
+      var n = comments.length;
+      for (var i = 0; i < n; i++) {
+        var comment = comments[i];
+        var host = ownBlockquote(comment) || comment;
+        var author = childWithClass(host, "author");
+        var num = childWithClass(host, "hcb-comment-n");
+        var label = (i + 1) + ".";
+        if (!num) {
+          num = document.createElement("span");
+          num.className = "hcb-comment-n";
+          num.textContent = label;
+          if (author) host.insertBefore(num, author);
+          else host.insertBefore(num, host.firstChild);
+        } else {
+          if (author && num.nextElementSibling !== author) host.insertBefore(num, author);
+          if (num.textContent !== label) num.textContent = label;
+        }
+      }
+      var h3 = boxHeading();
+      if (!h3) return;
+      var paged = !!box.querySelector("[onclick*='changepage']");
+      var title = paged ? ("留言（本頁 " + n + " 則）") : ("留言（共 " + n + " 則）");
+      if (h3.textContent !== title) h3.textContent = title;
+    }
+
+    numberComments();
+    if (window.MutationObserver) {
+      new MutationObserver(numberComments).observe(box, { childList: true, subtree: true });
     }
   })();
  </script>
