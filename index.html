@@ -1648,6 +1648,237 @@
       return null;
     }
 
+    /* HCB paginates at 100 and does not publish a grand total. fetch() of
+       jread is blocked by CORS, and loading that script on this page would
+       redraw the wall (it assigns var hcb). A worker importScripts, with a
+       sandboxed frame as fallback, reads only the pagination line. The last
+       page's "to" number is the top-level total; replies stay out of it. */
+    var CACHE_TOTAL = "memorial-hcb-total";
+    var CACHE_HEAD = "memorial-hcb-head";
+    var cachedTotal = 0;
+    var cachedHead = "";
+    var inflight = "";
+    var attempts = {};
+    try {
+      var storedTotal = parseInt(sessionStorage.getItem(CACHE_TOTAL), 10);
+      if (storedTotal > 0) cachedTotal = storedTotal;
+      cachedHead = sessionStorage.getItem(CACHE_HEAD) || "";
+    } catch (e) {}
+
+    function storageSet(key, value) {
+      try { sessionStorage.setItem(key, value); } catch (e) {}
+    }
+
+    function saveTotal(total, head) {
+      if (!(total > 0)) return;
+      cachedTotal = total;
+      storageSet(CACHE_TOTAL, String(total));
+      if (head) {
+        cachedHead = head;
+        storageSet(CACHE_HEAD, head);
+      }
+    }
+
+    function jreadSrc() {
+      var nodes = document.querySelectorAll("script[src*='htmlcommentbox.com/jread']");
+      if (!nodes.length) return "";
+      var src = nodes[nodes.length - 1].getAttribute("src") || "";
+      if (src.indexOf("htmlcommentbox.com/jread") === -1) return "";
+      return src;
+    }
+
+    function withPage(src, page) {
+      var base = src.replace(/([?&])pagenum=\d+/g, "");
+      base = base.replace(/&&+/g, "&").replace(/\?&/, "?").replace(/[?&]$/, "");
+      return base + (base.indexOf("?") === -1 ? "?" : "&") + "pagenum=" + page;
+    }
+
+    function pageSizeOf(src) {
+      var m = src.match(/[?&]num=(\d+)/);
+      var n = m ? parseInt(m[1], 10) : 100;
+      return n > 0 ? n : 100;
+    }
+
+    function readDomPage() {
+      var next = box.querySelector("[onclick*='changepage(1)']");
+      var prev = box.querySelector("[onclick*='changepage(-1)']");
+      if (!next && !prev) return null;
+      var link = next || prev;
+      var text = link.parentElement ? link.parentElement.textContent : "";
+      var m = text.match(/(\d+)\D+(\d+)/);
+      return {
+        from: m ? parseInt(m[1], 10) : 0,
+        to: m ? parseInt(m[2], 10) : 0,
+        hasNext: !!next,
+        hasPrev: !!prev
+      };
+    }
+
+    function firstCommentSig() {
+      var list = box.querySelector("#comments_list");
+      if (!list) return "";
+      var comments = topLevelComments(list);
+      if (!comments.length) return "";
+      var el = comments[0];
+      if (el.id) return el.id;
+      var author = el.querySelector(".author-name");
+      var body = el.querySelector(".hcb-comment-body");
+      return ((author && author.textContent) || "") + "|" + ((body && body.textContent) || "").replace(/\s+/g, " ").slice(0, 40);
+    }
+
+    function parseProbe(html) {
+      if (!html) return null;
+      var m = html.match(/(\d+)\s+to\s+(\d+)/) || html.match(/(\d+)\s*至\s*(\d+)/);
+      if (!m) return null;
+      return {
+        from: parseInt(m[1], 10),
+        to: parseInt(m[2], 10),
+        hasNext: /changepage\(1\)/.test(html),
+        hasPrev: /changepage\(-1\)/.test(html)
+      };
+    }
+
+    function loadPaginationFrame(src, done) {
+      var iframe = document.createElement("iframe");
+      iframe.setAttribute("sandbox", "allow-scripts");
+      iframe.setAttribute("aria-hidden", "true");
+      iframe.tabIndex = -1;
+      iframe.style.cssText = "position:absolute;width:0;height:0;border:0;visibility:hidden";
+      var token = "hcb" + Math.random().toString(36).slice(2);
+      var html = "<!DOCTYPE html><meta charset=\"utf-8\"><div id=\"HCB_comment_box\"></div>"
+        + "<script src=\"" + src.replace(/&/g, "&amp;").replace(/"/g, "&quot;") + "\"><\/script>"
+        + "<script>parent.postMessage({t:" + JSON.stringify(token)
+        + ",p:(typeof pagination==='string'?pagination:'')},'*');<\/script>";
+      var timer = setTimeout(function () { finish(""); }, 8000);
+      function finish(value) {
+        clearTimeout(timer);
+        window.removeEventListener("message", onMsg);
+        if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+        done(value || "");
+        done = function () {};
+      }
+      function onMsg(e) {
+        if (!e.data || e.data.t !== token) return;
+        if (iframe.contentWindow && e.source && e.source !== iframe.contentWindow) return;
+        finish(e.data.p || "");
+      }
+      window.addEventListener("message", onMsg);
+      iframe.srcdoc = html;
+      document.body.appendChild(iframe);
+    }
+
+    function loadPagination(src, done) {
+      var finished = false;
+      function finish(html) {
+        if (finished) return;
+        finished = true;
+        done(html || "");
+      }
+      if (!window.Worker || !window.Blob || !window.URL || !window.URL.createObjectURL) {
+        loadPaginationFrame(src, finish);
+        return;
+      }
+      var blobUrl = "";
+      var worker = null;
+      try {
+        var code = "try{importScripts(" + JSON.stringify(src) + ")}catch(e){}"
+          + "postMessage(typeof pagination==='string'?pagination:'');";
+        blobUrl = URL.createObjectURL(new Blob([code], { type: "text/javascript" }));
+        worker = new Worker(blobUrl);
+      } catch (e) {
+        loadPaginationFrame(src, finish);
+        return;
+      }
+      var timer = setTimeout(function () {
+        try { worker.terminate(); } catch (e) {}
+        if (!finished) loadPaginationFrame(src, finish);
+      }, 8000);
+      worker.onmessage = function (e) {
+        clearTimeout(timer);
+        try { worker.terminate(); } catch (err) {}
+        try { if (blobUrl) URL.revokeObjectURL(blobUrl); } catch (err) {}
+        if (e && e.data) finish(String(e.data));
+        else if (!finished) loadPaginationFrame(src, finish);
+      };
+      worker.onerror = function () {
+        clearTimeout(timer);
+        try { worker.terminate(); } catch (err) {}
+        if (!finished) loadPaginationFrame(src, finish);
+      };
+    }
+
+    function discoverTotal(baseSrc, startPage, cb) {
+      var probes = 0;
+      var lastGood = null;
+      var step = 1;
+      function probe(page, done) {
+        probes += 1;
+        if (probes > 12) return done(null);
+        loadPagination(withPage(baseSrc, page), function (html) {
+          done(parseProbe(html));
+        });
+      }
+      function climb(page) {
+        probe(page, function (info) {
+          if (!info) return cb(0);
+          if (info.from > info.to) {
+            if (!lastGood) return cb(-1);
+            return bisect(lastGood.page, page - 1);
+          }
+          if (!info.hasNext) return cb(info.to);
+          lastGood = { page: page };
+          climb(page + step);
+          step *= 2;
+        });
+      }
+      function bisect(lo, hi) {
+        if (hi <= lo) return cb(0);
+        var mid = Math.floor((lo + hi + 1) / 2);
+        probe(mid, function (info) {
+          if (!info || info.from > info.to) return bisect(lo, mid - 1);
+          if (!info.hasNext) return cb(info.to);
+          bisect(mid, hi);
+        });
+      }
+      climb(startPage);
+    }
+
+    function updateHeading(n) {
+      var h3 = boxHeading();
+      if (!h3) return;
+      var dom = readDomPage();
+      var head = firstCommentSig();
+      var title;
+      if (!dom) {
+        title = "留言（共 " + n + " 則）";
+      } else if (!dom.hasNext && dom.from > 0 && dom.to >= dom.from) {
+        saveTotal(dom.to, dom.hasPrev ? "" : head);
+        title = "留言（共 " + cachedTotal + " 則）";
+      } else if (cachedTotal && dom.to > 0 && cachedTotal >= dom.to) {
+        title = "留言（共 " + cachedTotal + " 則）";
+      } else {
+        title = "留言（本頁 " + n + " 則）";
+      }
+      if (h3.textContent !== title) h3.textContent = title;
+      if (!dom || !dom.hasNext || !(dom.from > 0) || dom.to < dom.from) return;
+      var trustworthy = cachedTotal >= dom.to && (dom.hasPrev || !head || head === cachedHead);
+      if (trustworthy) return;
+      var token = (dom.hasPrev ? "later" : head) + ":" + dom.from + ":" + dom.to;
+      if (inflight === token || (attempts[token] || 0) >= 2) return;
+      var src = jreadSrc();
+      if (!src) return;
+      attempts[token] = (attempts[token] || 0) + 1;
+      inflight = token;
+      var start = Math.floor((dom.from - 1) / pageSizeOf(src)) + 1;
+      discoverTotal(src, start, function (total) {
+        if (inflight === token) inflight = "";
+        if (total === -1 && dom.to > 0 && dom.to >= dom.from) total = dom.to;
+        if (!(total > 0)) return;
+        saveTotal(total, dom.hasPrev ? "" : head);
+        numberComments();
+      });
+    }
+
     function numberComments() {
       var list = box.querySelector("#comments_list");
       if (!list) return;
@@ -1670,11 +1901,7 @@
           if (num.textContent !== label) num.textContent = label;
         }
       }
-      var h3 = boxHeading();
-      if (!h3) return;
-      var paged = !!box.querySelector("[onclick*='changepage']");
-      var title = paged ? ("留言（本頁 " + n + " 則）") : ("留言（共 " + n + " 則）");
-      if (h3.textContent !== title) h3.textContent = title;
+      try { updateHeading(n); } catch (e) {}
     }
 
     numberComments();
